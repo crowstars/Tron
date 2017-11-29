@@ -1,2 +1,18 @@
 Color[] board
-Color is either blue, yellow, or null if unoccupied. board starts out null
+Color is either blue, yellow, or null if unoccupied. board starts out null. Basically works similar to the Go board.
+
+For every frame -
+
+For each player (simultaneously): If direction they're trying to move is unoccupied, move player and draw line on board
+If direction is occupied, make them crash, end the game.
+
+Custom variable type Location:
+function: holds coordinate ints x and y. Basically, similar to go
+has: Accessors
+
+Player objects?
+Variables: int currentDirection, Location location, Color color
+Finals north, south, east, west - north = 0, east = 1, south = 2, west = 3
+
+
+
