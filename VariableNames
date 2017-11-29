@@ -1,0 +1,2 @@
+Color[] board
+Color is either blue, yellow, or null if unoccupied. board starts out null
