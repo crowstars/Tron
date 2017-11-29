@@ -6,13 +6,18 @@ For every frame -
 For each player (simultaneously): If direction they're trying to move is unoccupied, move player and draw line on board
 If direction is occupied, make them crash, end the game.
 
-Custom variable type Location:
+Custom objects/variable types:
+
+Location:
 function: holds coordinate ints x and y. Basically, similar to go
+Variables: int x, int y
 has: Accessors
 
-Player objects?
-Variables: int currentDirection, Location location, Color color
-Finals north, south, east, west - north = 0, east = 1, south = 2, west = 3
+Player:
+Function: keeps track of data for one player
+Variables: int currentDirection, Location location, Color color,
+ Finals north, south, east, west - north = 0, east = 1, south = 2, west = 3
+has: Accessors, Modifiers for location + currentDirection
 
 
 
