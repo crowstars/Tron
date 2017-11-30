@@ -1,6 +1,6 @@
 
 public class Draw {
-
+    /*
   public void handleKeyPresses() {
 		Player Player1 = model.getPlayer1();
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
@@ -29,5 +29,6 @@ public class Draw {
     
     }
 	}
+	*/
   
 }

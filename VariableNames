@@ -23,6 +23,7 @@ Main:
 Funtion: Main class for game app. Handles user input and drawing board
 Has: main(), draw methods, handleKeyPress()
 
+
 REMEMBER TO PUT CREDITS IF COPYING CODE FROM JLING
 //Copied from the Learn Java in N Games program X
 
