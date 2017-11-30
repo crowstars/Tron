@@ -17,8 +17,8 @@ public class TronModel {
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
-		player1 = new Player(StdDraw.YELLOW, midpoint, 0, SOUTH);
-		player2 = new Player(StdDraw.BLUE, midpoint, width, NORTH);
+		player1 = new Player(Color.YELLOW, midpoint, 0, SOUTH);
+		player2 = new Player(Color.BLUE, midpoint, width, NORTH);
 		updateBoard();
 		gameOver = false;
 		winner = null;
