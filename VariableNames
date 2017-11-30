@@ -19,5 +19,5 @@ Variables: int currentDirection, Location location, Color color,
  Finals north, south, east, west - north = 0, east = 1, south = 2, west = 3
 has: Accessors, Modifiers for location + currentDirection
 
-
+TronModel
 
