@@ -41,7 +41,8 @@ public class TronModel {
 		}
 		else return false;
 	}
-
+	
+	//keep returning null if nobody has won yet!
 	public Color getWinner(){
 		return winner;
 	}

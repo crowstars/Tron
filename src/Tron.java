@@ -1,20 +1,50 @@
-
+import java.awt.Color;
 
 public class Tron {
 	public static void main(String args[]){
-		//Print basic structure 
+		
+		TronModel model = new TronModel(20);
+		
+		drawBasic();
+		
+		while(model.getWinner() == null){
+			Color[][] display = model.getBoard();
+			//NOTE: one unit of the display is 0.035
+			//coords start at 0.15, 0.21 and build from there 
+		}
+		
+		
+		StdDraw.show();
+		
+	}
+	
+	public static void drawBasic(){
+		//Color window 
 		StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
 		StdDraw.filledRectangle(0.5, 0.5, 0.5, 0.5);
 		
+		//add borders around windows
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.filledRectangle(0.5, 0.10, 0.445, 0.085);
+		StdDraw.filledRectangle(0.5, 0.56, 0.355, 0.355);
+		
+		//draw windows
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
-		
 		StdDraw.filledRectangle(0.5, 0.56, 0.35, 0.35); 
 		
+		//set title text 
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.95, "Tron!");
 		
-		StdDraw.show();
+		//draw tutorial text, 3 layers????
+		StdDraw.text(0.25, 0.15, "Player 1");
+		StdDraw.text(0.25, 0.1, "Steer with WASD");
+		
+		StdDraw.text(0.75, 0.15, "Player 2");
+		StdDraw.text(0.75, 0.1, "Steer with IJKL");
+
+		StdDraw.text(0.5, 0.05, "Press SPACE to start");
 	}
 	
     
