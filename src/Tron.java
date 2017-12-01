@@ -1,6 +1,24 @@
 
-public class Draw {
+
+public class Tron {
+	public static void main(String args[]){
+		//Print basic structure 
+		StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+		StdDraw.filledRectangle(0.5, 0.5, 0.5, 0.5);
+		
+		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
+		
+		StdDraw.filledRectangle(0.5, 0.56, 0.35, 0.35); 
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, 0.95, "Tron!");
+		
+		StdDraw.show();
+	}
+	
     
+	/*
   public void handleKeyPresses() {
 		//Player Player1 = model.getPlayer1();
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
@@ -30,6 +48,7 @@ public class Draw {
     			tronModel.player2move(SOUTH);
     	        }
 	}
+	*/
 
   
 }
