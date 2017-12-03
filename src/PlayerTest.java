@@ -11,7 +11,7 @@ public class PlayerTest {
 
 	@Before
 	public void init(){
-		player = new Player(Color.blue, 0, 0);
+		player = new Player(Color.blue, 0, 0, 0);
 	}
 	
 	@Test
