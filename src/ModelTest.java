@@ -7,7 +7,7 @@ import java.awt.Color;
 
 public class TronModelTest {
 	
-	TronModel board;
+	TronModel model;
 	
 	public final int NORTH = 0;
 	public final int EAST = 1;
@@ -16,30 +16,46 @@ public class TronModelTest {
 
 @ Before
 public void init(){
-	board = new TronModel(5);
+	model = new TronModel(5);
 	}
 
 @Test
 public void ifisEmpty(){
 	
-	board.player1move(SOUTH);
-	board.player2move(NORTH);
-	board.movePlayers();
-	assertTrue(board.isEmpty(2,2));
-	assertFalse(board.isEmpty(2, 0));
-	assertTrue(board.isEmpty(1,2));
-	assertFalse(board.isEmpty(2, 1));
+	model.player1move(SOUTH);
+	model.movePlayers();
+	model.player2move(NORTH);
+	model.movePlayers();
+	model.updateBoard();
+	assertTrue(model.isEmpty(2,2));
+	assertFalse(model.isEmpty(2, 0));
+	assertTrue(model.isEmpty(1,2));
+	assertFalse(model.isEmpty(2, 1));
+	assertFalse(model.isEmpty(2, 4));
 	
 }
 @Test
 public void getboard() {
-	Color[][] board = new Color[5][5];
-	board.player1move(SOUTH);
-	board.updateBoard();
-	assertEquals(board.getBoard(),board[2][1]);
+	Color [][] board = new Color[5][5];
+	model.player1move(SOUTH);
+	model.movePlayers();
+	model.updateBoard();
+	assertEquals(model.getBoard(),board[2][1]);
 }
 
-
+public void getwinner() {
+	Color [][] board = new Color[5][5];
+	model.player1move(SOUTH);
+	model.player1move(SOUTH);
+	model.player1move(WEST);
+	model.movePlayers();
+	model.updateBoard();
+	model.player2move(NORTH);
+	model.player2move(NORTH);
+	model.player2move(NORTH);
+	assertEquals(model.getWinner(),player1);
+	
+}
 }
 
 
