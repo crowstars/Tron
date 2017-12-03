@@ -50,6 +50,7 @@ public class Tron {
     
 	/*
   public void handleKeyPresses() {
+  //Copied from the Learn Java in N Games program AsteroidRally
 		//Player Player1 = model.getPlayer1();
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
 			tronModel.player1move(WEST);
