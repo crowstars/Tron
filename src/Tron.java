@@ -9,8 +9,15 @@ public class Tron {
 		
 		while(model.getWinner() == null){
 			Color[][] display = model.getBoard();
-			//NOTE: one unit of the display is 0.035
-			//coords start at 0.15, 0.21 and build from there 
+			for(int i = 0; i < 20; i++){
+				for(int j = 0; j < 20; j++){
+					double xLocation = ((j + 1) * 0.035) + 0.15; //each unit is 0.035 * 0.035
+					double yLocation = ((i + 1) * 0.035) + 0.21;
+					
+					display[i][j];
+				}
+			}
+			model.movePlayers();
 		}
 		
 		
