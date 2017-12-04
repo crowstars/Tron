@@ -68,6 +68,7 @@ public class TronModel {
 		//Find destinations
 		Location destination1;
 		Location destination2;
+		
 		int direction = player1.getDirection();
 		if(direction == NORTH){
 			destination1 = new Location(player1.getX(), player1.getY() - 1);
@@ -81,6 +82,7 @@ public class TronModel {
 		else{
 			destination1 = new Location(player1.getX() - 1, player1.getY());
 		}
+		
 		direction = player2.getDirection();
 		if(direction == NORTH){
 			destination2 = new Location(player2.getX(), player2.getY() - 1);
@@ -94,6 +96,13 @@ public class TronModel {
 		else{
 			destination2 = new Location(player2.getX() - 1, player2.getY());
 		}
+		
 		//TODO finish this
+		player1.setX(destination1.getColumn());
+		player1.setY(destination1.getRow());
+		
+		player2.setX(destination2.getColumn());
+		player2.setY(destination2.getRow());
+		
 	}
 }
