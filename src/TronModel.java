@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+//the problem is here
 public class TronModel {
 	private Color[][] board;
 
@@ -43,13 +43,13 @@ public class TronModel {
 	//keep returning null if nobody has won yet, otherwise return player that has won
 	public Color getWinner(){
 		//check if player 1 ran into wall
-		if(player1.getX() == 0 || player1.getY() == 0){
+		if(player1.getX() == 0 || player1.getY() == 0 || player1.getX() == 19 || player1.getY() == 19){
 			System.out.println("wall");
 			return player2.getColor();
 		}
 		
 		//check if player 2 ran into wall 
-		if(player2.getX() == 0 || player2.getY() == 0){
+		if(player2.getX() == 0 || player2.getY() == 0 || player2.getX() == 19 || player2.getY() == 19){
 			System.out.println("wall");
 			return player1.getColor();
 		}
@@ -76,11 +76,11 @@ public class TronModel {
 		return player2;
 	}
 
-	public void movePlayers(){
-		//Find destinations
-		Location destination1;
-		Location destination2;
-		
+//	public void movePlayers(){
+//		//Find destinations
+//		Location destination1;
+//		Location destination2;
+//		
 //		int direction = player1.getDirection();
 //		if(direction == NORTH){
 //			destination1 = new Location(player1.getX(), player1.getY() - 1);
@@ -94,29 +94,76 @@ public class TronModel {
 //		else{
 //			destination1 = new Location(player1.getX() - 1, player1.getY());
 //		}
-		
-		int direction = player2.getDirection();
-		if(direction == NORTH){
-			destination2 = new Location(player2.getX(), player2.getY() - 1);
-		}
-		else if(direction == EAST){
-			destination2 = new Location(player2.getX() + 1, player2.getY());
-		}
-		else if (direction == SOUTH){
-			destination2 = new Location(player2.getX(), player2.getY() + 1);
-		}
-		else{
-			destination2 = new Location(player2.getX() - 1, player2.getY());
-		}
-		
-		//TODO finish this
+//		
+//		direction = player2.getDirection();
+//		if(direction == NORTH){
+//			destination2 = new Location(player2.getX(), player2.getY() - 1);
+//		}
+//		else if(direction == EAST){
+//			destination2 = new Location(player2.getX() + 1, player2.getY());
+//		}
+//		else if (direction == SOUTH){
+//			destination2 = new Location(player2.getX(), player2.getY() + 1);
+//		}
+//		else{
+//			destination2 = new Location(player2.getX() - 1, player2.getY());
+//		}
+//		
+//		//TODO finish this
 //		player1.setX(destination1.getColumn());
 //		player1.setY(destination1.getRow());
+//		
+//		player2.setX(destination2.getColumn());
+//		player2.setY(destination2.getRow());
+//		
+//		updateBoard();
+//		
+//	}
+	
+	public void movePlayers(){
+		int player1x = player1.getX();
+		int player1y = player1.getY();
+		int direction = player1.getDirection();
+		switch(direction){
+		case(NORTH):
+			player1y -= 1;
+			break;
+		case(EAST):
+			player1x += 1;
+			break;
+		case(SOUTH):
+			player1y += 1;
+			break;
+		case(WEST):
+			player1x -= 1;
+			break;
 		
-		player2.setX(destination2.getColumn());
-		player2.setY(destination2.getRow());
+		}
+		
+		int player2x = player2.getX();
+		int player2y = player2.getY();
+	    direction = player2.getDirection();
+		switch(direction){
+		case(NORTH):
+			player2y -= 1;
+			break;
+		case(EAST):
+			player2x += 1;
+			break;
+		case(SOUTH):
+			player2y += 1;
+			break;
+		case(WEST):
+			player2x -= 1;
+			break;
+		
+		}	
+		
+		player1.setX(player1x);
+		player1.setY(player1y);
+		player2.setX(player2x);
+		player2.setY(player2y);
 		
 		updateBoard();
-		
 	}
 }

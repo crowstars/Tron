@@ -149,11 +149,11 @@ public class Tron {
 		waitForSpace();
 
 		while (true) {
-			if(model.getWinner() != null) break;
 			handleKeyPresses();
 			showBoard();
+			if(model.getWinner() != null) break;
 			model.movePlayers();
-			StdDraw.pause(10); //slow game clock for testing!
+			StdDraw.pause(50); //slow game clock for testing!
 			System.out.println("clock");
 		}
 
