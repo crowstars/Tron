@@ -13,12 +13,13 @@ public class TronModel {
 	public final int SOUTH = 2;
 	public final int WEST = 3;
 
+	//TODO rewrite starting positions
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
-		player1 = new Player(Color.YELLOW, midpoint, 0, SOUTH);
-		player2 = new Player(Color.BLUE, midpoint, width-1, NORTH);
-		updateBoard();
+		player1 = new Player(Color.YELLOW, midpoint - 2, midpoint, SOUTH); 
+		player2 = new Player(Color.BLUE, midpoint + 2, midpoint, NORTH);
+		//updateBoard();
 		gameOver = false;
 	}
 
@@ -42,16 +43,27 @@ public class TronModel {
 	//keep returning null if nobody has won yet, otherwise return player that has won
 	public Color getWinner(){
 		//check if player 1 ran into wall
-		if(player1.getX() == 0 || player1.getY() == 0) return Color.BLUE;
+		if(player1.getX() == 0 || player1.getY() == 0){
+			System.out.println("wall");
+			return player2.getColor();
+		}
 		
 		//check if player 2 ran into wall 
-		if(player2.getX() == 0 || player2.getY() == 0) return Color.YELLOW;
+		if(player2.getX() == 0 || player2.getY() == 0){
+			System.out.println("wall");
+			return player1.getColor();
+		}
 		
+		//commented out for the time being until everything else is settled 
 		//check if player 1 ran into trail 
-		if(!isEmpty(player1.getX(), player1.getY())) return Color.BLUE;
+//		if(!isEmpty(player1.getX(), player1.getY())){
+//			return player2.getColor();
+//		}
 		
-		//check if player 2 ran into trail
-		if(!isEmpty(player2.getX(), player2.getX())) return Color.YELLOW;
+//		//check if player 2 ran into trail
+//		if(!isEmpty(player2.getX(), player2.getX())){
+//			return player1.getColor();
+//		}
 		
 		return null;
 	}
@@ -69,21 +81,21 @@ public class TronModel {
 		Location destination1;
 		Location destination2;
 		
-		int direction = player1.getDirection();
-		if(direction == NORTH){
-			destination1 = new Location(player1.getX(), player1.getY() - 1);
-		}
-		else if(direction == EAST){
-			destination1 = new Location(player1.getX() + 1, player1.getY());
-		}
-		else if (direction == SOUTH){
-			destination1 = new Location(player1.getX(), player1.getY() + 1);
-		}
-		else{
-			destination1 = new Location(player1.getX() - 1, player1.getY());
-		}
+//		int direction = player1.getDirection();
+//		if(direction == NORTH){
+//			destination1 = new Location(player1.getX(), player1.getY() - 1);
+//		}
+//		else if(direction == EAST){
+//			destination1 = new Location(player1.getX() + 1, player1.getY());
+//		}
+//		else if (direction == SOUTH){
+//			destination1 = new Location(player1.getX(), player1.getY() + 1);
+//		}
+//		else{
+//			destination1 = new Location(player1.getX() - 1, player1.getY());
+//		}
 		
-		direction = player2.getDirection();
+		int direction = player2.getDirection();
 		if(direction == NORTH){
 			destination2 = new Location(player2.getX(), player2.getY() - 1);
 		}
@@ -98,11 +110,13 @@ public class TronModel {
 		}
 		
 		//TODO finish this
-		player1.setX(destination1.getColumn());
-		player1.setY(destination1.getRow());
+//		player1.setX(destination1.getColumn());
+//		player1.setY(destination1.getRow());
 		
 		player2.setX(destination2.getColumn());
 		player2.setY(destination2.getRow());
+		
+		updateBoard();
 		
 	}
 }
