@@ -47,12 +47,12 @@ public class TronModel {
 		return winner;
 	}
 
-	public void player1move(int direction){
-		player1.setDirection(direction);
+	public Player getPlayer1(){
+		return player1;
 	}
-
-	public void player2move(int direction){
-		player2.setDirection(direction);
+	
+	public Player getPlayer2(){
+		return player2;
 	}
 
 	public void movePlayers(){
