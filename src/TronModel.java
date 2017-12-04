@@ -7,6 +7,7 @@ public class TronModel {
 	private Player player2;
 
 	boolean gameOver;
+	Color winner;
 
 	public final int NORTH = 0;
 	public final int EAST = 1;
@@ -17,10 +18,11 @@ public class TronModel {
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
-		player1 = new Player(Color.YELLOW, midpoint - 2, midpoint, SOUTH); 
-		player2 = new Player(Color.BLUE, midpoint + 2, midpoint, NORTH);
+		player1 = new Player(StdDraw.YELLOW, midpoint - 2, 0, SOUTH);
+		player2 = new Player(StdDraw.BLUE, midpoint + 2, midpoint, NORTH);
 		//updateBoard();
 		gameOver = false;
+		winner = null;
 	}
 
 	public void updateBoard(){
@@ -76,51 +78,73 @@ public class TronModel {
 		return player2;
 	}
 
-//	public void movePlayers(){
-//		//Find destinations
-//		Location destination1;
-//		Location destination2;
-//		
-//		int direction = player1.getDirection();
-//		if(direction == NORTH){
-//			destination1 = new Location(player1.getX(), player1.getY() - 1);
-//		}
-//		else if(direction == EAST){
-//			destination1 = new Location(player1.getX() + 1, player1.getY());
-//		}
-//		else if (direction == SOUTH){
-//			destination1 = new Location(player1.getX(), player1.getY() + 1);
-//		}
-//		else{
-//			destination1 = new Location(player1.getX() - 1, player1.getY());
-//		}
-//		
-//		direction = player2.getDirection();
-//		if(direction == NORTH){
-//			destination2 = new Location(player2.getX(), player2.getY() - 1);
-//		}
-//		else if(direction == EAST){
-//			destination2 = new Location(player2.getX() + 1, player2.getY());
-//		}
-//		else if (direction == SOUTH){
-//			destination2 = new Location(player2.getX(), player2.getY() + 1);
-//		}
-//		else{
-//			destination2 = new Location(player2.getX() - 1, player2.getY());
-//		}
-//		
-//		//TODO finish this
-//		player1.setX(destination1.getColumn());
-//		player1.setY(destination1.getRow());
-//		
-//		player2.setX(destination2.getColumn());
-//		player2.setY(destination2.getRow());
-//		
-//		updateBoard();
-//		
-//	}
-	
 	public void movePlayers(){
+		//Find destinations
+		Location destination1;
+		Location destination2;
+
+		int direction = player1.getDirection();
+		if(direction == NORTH){
+			destination1 = new Location(player1.getX(), player1.getY() - 1);
+		}
+		else if(direction == EAST){
+			destination1 = new Location(player1.getX() + 1, player1.getY());
+		}
+		else if (direction == SOUTH){
+			destination1 = new Location(player1.getX(), player1.getY() + 1);
+		}
+		else{
+			destination1 = new Location(player1.getX() - 1, player1.getY());
+		}
+
+		direction = player2.getDirection();
+		if(direction == NORTH){
+			destination2 = new Location(player2.getX(), player2.getY() - 1);
+		}
+		else if(direction == EAST){
+			destination2 = new Location(player2.getX() + 1, player2.getY());
+		}
+		else if (direction == SOUTH){
+			destination2 = new Location(player2.getX(), player2.getY() + 1);
+		}
+		else{
+			destination2 = new Location(player2.getX() - 1, player2.getY());
+		}
+
+		//Test for collisions
+		if(destination1.getRow() >= board.length || destination1.getColumn() >= board.length || destination1.getRow() <= 0 || destination1.getColumn() <= 0){
+			gameOver = true;
+			winner = player2.getColor();
+		}
+		else if(destination2.getRow() >= board.length || destination2.getColumn() >= board.length || destination2.getRow() <= 0 || destination2.getColumn() <= 0){
+			gameOver = true;
+			winner = player1.getColor();
+		}
+		else if(board[destination1.getRow()][destination1.getColumn()] != null){
+			gameOver = true;
+			winner = player2.getColor();
+		}
+		else if(board[destination2.getRow()][destination2.getColumn()] != null){
+			gameOver = true;
+			winner = player1.getColor();
+		}
+
+		if(!gameOver) {
+			player1.setX(destination1.getColumn());
+			player1.setY(destination1.getRow());
+
+			player2.setX(destination2.getColumn());
+			player2.setY(destination2.getRow());
+
+			updateBoard();
+		}
+	}
+
+	public Color getWinnerColor(){
+		return winner;
+	}
+	
+	/*public void movePlayers(){
 		int player1x = player1.getX();
 		int player1y = player1.getY();
 		int direction = player1.getDirection();
@@ -165,5 +189,5 @@ public class TronModel {
 		player2.setY(player2y);
 		
 		updateBoard();
-	}
+	}*/
 }

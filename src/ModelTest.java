@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-public class TronModelTest {
+class TronModelTest {
 	
 	TronModel model;
 	
@@ -19,6 +19,7 @@ public void init(){
 	model = new TronModel(5);
 	}
 
+/*
 @Test
 public void ifisEmpty(){
 	
@@ -55,7 +56,9 @@ public void getwinner() {
 	model.player2move(NORTH);
 	assertEquals(model.getWinner(),player1);
 	
+
 }
+*/
 }
 
 
