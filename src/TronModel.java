@@ -41,7 +41,11 @@ public class TronModel {
 		}
 		else return false;
 	}
-	
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
 	//keep returning null if nobody has won yet, otherwise return player that has won
 	public Color getWinner(){
 		//check if player 1 ran into wall
