@@ -80,12 +80,12 @@ public class Tron {
 											// drawing rectangle over it
 		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
 
-		if (model.getWinner().equals(Color.YELLOW)) {
+		if (model.getWinner().getColor().equals(StdDraw.YELLOW)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.08, "Player 1 Wins!");
 		}
 
-		if (model.getWinner().equals(Color.BLUE)) {
+		if (model.getWinner().getColor().equals(StdDraw.BLUE)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.08, "Player 2 Wins!");
 		}
@@ -109,12 +109,12 @@ public class Tron {
 																	// 0.035
 					double yLocation = ((i + 1) * 0.035) + 0.21;
 
-					if (display[i][j].equals(Color.YELLOW)) {
+					if (display[i][j].equals(StdDraw.YELLOW)) {
 						StdDraw.setPenColor(player1Color);
 						StdDraw.filledRectangle(xLocation, yLocation, 0.0175, 0.0175);
 					}
 
-					if (display[i][j].equals(Color.BLUE)) {
+					if (display[i][j].equals(StdDraw.BLUE)) {
 						StdDraw.setPenColor(player2Color);
 						StdDraw.filledRectangle(xLocation, yLocation, 0.0175, 0.0175);
 					}

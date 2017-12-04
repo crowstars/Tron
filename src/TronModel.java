@@ -5,7 +5,6 @@ public class TronModel {
 
 	private Player player1;
 	private Player player2;
-	private Color winner;
 
 	boolean gameOver;
 
@@ -21,7 +20,6 @@ public class TronModel {
 		player2 = new Player(Color.BLUE, midpoint, width-1, NORTH);
 		updateBoard();
 		gameOver = false;
-		winner = null;
 	}
 
 	public void updateBoard(){
@@ -30,7 +28,6 @@ public class TronModel {
 	}
 
 	//board accessors
-
 	public Color[][] getBoard() {
 		return board;
 	}
@@ -42,9 +39,21 @@ public class TronModel {
 		else return false;
 	}
 	
-	//keep returning null if nobody has won yet!
+	//keep returning null if nobody has won yet, otherwise return player that has won
 	public Color getWinner(){
-		return winner;
+		//check if player 1 ran into wall
+		if(player1.getX() == 0 || player1.getY() == 0) return Color.BLUE;
+		
+		//check if player 2 ran into wall 
+		if(player2.getX() == 0 || player2.getY() == 0) return Color.YELLOW;
+		
+		//check if player 1 ran into trail 
+		if(!isEmpty(player1.getX(), player1.getY())) return Color.BLUE;
+		
+		//check if player 2 ran into trail
+		if(!isEmpty(player2.getX(), player2.getX())) return Color.YELLOW;
+		
+		return null;
 	}
 
 	public Player getPlayer1(){
