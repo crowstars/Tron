@@ -82,6 +82,14 @@ public class TronModel {
 		return player2;
 	}
 
+	public void setPlayer1Direction(int direction){
+		player1.setDirection(direction);
+	}
+
+	public void setPlayer2Direction(int direction){
+		player2.setDirection(direction);
+	}
+
 	public void movePlayers(){
 		//Find destinations
 		Location destination1;
@@ -119,18 +127,22 @@ public class TronModel {
 		if(destination1.getRow() >= board.length || destination1.getColumn() >= board.length || destination1.getRow() <= 0 || destination1.getColumn() <= 0){
 			gameOver = true;
 			winner = player2.getColor();
+			System.out.println("Player 1 ran into wall");
 		}
 		else if(destination2.getRow() >= board.length || destination2.getColumn() >= board.length || destination2.getRow() <= 0 || destination2.getColumn() <= 0){
 			gameOver = true;
 			winner = player1.getColor();
+			System.out.println("Player 2 ran into wall");
 		}
 		else if(board[destination1.getRow()][destination1.getColumn()] != null){
 			gameOver = true;
 			winner = player2.getColor();
+			System.out.println("Player 1 ran into light trail");
 		}
 		else if(board[destination2.getRow()][destination2.getColumn()] != null){
 			gameOver = true;
 			winner = player1.getColor();
+			System.out.println("Player 2 ran into light trail");
 		}
 
 		if(!gameOver) {
