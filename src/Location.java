@@ -1,10 +1,10 @@
 public class Location {
     //Location Copied from the Learn Java in N Games program Go
     /** @see #Location(int, int) */
-    private final int column;
+    private int column;
 
     /** @see #Location(int, int) */
-    private final int row;
+    private int row;
 
     /** Row is zero-based from top, column zero-based from top. */
     public Location(int row, int column) {

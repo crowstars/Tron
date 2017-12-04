@@ -144,13 +144,16 @@ public class TronModel {
 			winner = player1.getColor();
 			System.out.println("Player 2 ran into light trail");
 		}
+		
+		System.out.println(destination1.getColumn());
+		System.out.println(destination1.getRow());
 
 		if(!gameOver) {
-			player1.setX(destination1.getColumn());
-			player1.setY(destination1.getRow());
+			player1.setX(destination1.getRow());
+			player1.setY(destination1.getColumn());
 
-			player2.setX(destination2.getColumn());
-			player2.setY(destination2.getRow());
+			player2.setX(destination2.getRow());
+			player2.setY(destination2.getColumn());
 
 			updateBoard();
 		}
