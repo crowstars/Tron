@@ -47,32 +47,32 @@ public class Tron {
 
 	public void handleKeyPresses() {
 		// Copied from the Learn Java in N Games program AsteroidRally
-		Player Player1 = model.getPlayer1();
+
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
-			Player1.setDirection(WEST);
+			model.setPlayer1Direction(WEST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_D)) {
-			Player1.setDirection(EAST);
+			model.setPlayer1Direction(EAST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_W)) {
-			Player1.setDirection(NORTH);
+			model.setPlayer1Direction(NORTH);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_S)) {
-			Player1.setDirection(SOUTH);
+			model.setPlayer1Direction(SOUTH);
 		}
 
-		Player Player2 = model.getPlayer2();
+
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_J)) {
-			Player2.setDirection(WEST);
+			model.setPlayer2Direction(WEST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_L)) {
-			Player2.setDirection(EAST);
+			model.setPlayer2Direction(EAST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_I)) {
-			Player2.setDirection(NORTH);
+			model.setPlayer2Direction(NORTH);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_K)) {
-			Player2.setDirection(SOUTH);
+			model.setPlayer2Direction(SOUTH);
 		}
 	}
 
@@ -81,12 +81,12 @@ public class Tron {
 											// drawing rectangle over it
 		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
 
-		if (model.getWinner().equals(StdDraw.YELLOW)) {
+		if (model.getWinnerColor().equals(StdDraw.YELLOW)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
 		}
 
-		if (model.getWinner().equals(StdDraw.BLUE)) {
+		if (model.getWinnerColor().equals(StdDraw.BLUE)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 2 Wins!");
 		}
@@ -148,7 +148,7 @@ public class Tron {
 		drawBasic();
 		waitForSpace();
 
-		while (true) {
+		/*while (true) {
 			handleKeyPresses();
 			showBoard();
 			if(model.getWinner() != null) break;
@@ -157,7 +157,15 @@ public class Tron {
 			System.out.println("clock");
 		}
 
-		handleWinner();
+		handleWinner();*/
+
+		while(!model.isGameOver()){
+			handleKeyPresses();
+			showBoard();
+			model.movePlayers();
+			StdDraw.pause(50); //slow game clock for testing!
+			System.out.println("clock");
+		}
 
 		waitForSpace();
 		runGame(); // run game again
