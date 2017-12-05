@@ -63,7 +63,7 @@ public class Tron {
 			model.setPlayer1Direction(SOUTH);
 		}
 
-
+		//scan inputs for player 2
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_J)) {
 			model.setPlayer2Direction(WEST);
 		}

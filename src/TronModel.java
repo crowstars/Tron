@@ -14,7 +14,6 @@ public class TronModel {
 	public final int SOUTH = 2;
 	public final int WEST = 3;
 
-	//TODO rewrite starting positions
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
@@ -30,11 +29,12 @@ public class TronModel {
 		board[player2.getX()][player2.getY()] = player2.getColor();
 	}
 
-	//board accessors
+	//getter for board
 	public Color[][] getBoard() {
 		return board;
 	}
 
+	//checks to see if location is empty 
 	public boolean isEmpty(int x, int y){
 		if(board[x][y] == null){
 			return true;
@@ -42,6 +42,7 @@ public class TronModel {
 		else return false;
 	}
 
+	//checks to see if game is over
 	public boolean isGameOver() {
 		return gameOver;
 	}
