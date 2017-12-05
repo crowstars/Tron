@@ -53,4 +53,8 @@ public class Location {
     public int getRow() {
         return row;
     }
+
+    public String toString(){
+        return "" + row + ", " + column;
+    }
 }
