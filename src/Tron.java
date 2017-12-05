@@ -11,6 +11,8 @@ public class Tron {
 	public final int WEST = 3;
 
 	public TronModel model;
+	
+	public final int SPEED = 70; //speed of game clock. 
 
 	public static void main(String args[]) {
 		new Tron().runGame();
@@ -163,7 +165,7 @@ public class Tron {
 			handleKeyPresses();
 			showBoard();
 			model.movePlayers();
-			StdDraw.pause(50); //slow game clock for testing!
+			StdDraw.pause(SPEED); //slow game clock for testing!
 			System.out.println("clock");
 		}
 
