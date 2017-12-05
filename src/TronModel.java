@@ -18,8 +18,8 @@ public class TronModel {
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
-		player1 = new Player(StdDraw.YELLOW, midpoint - 2, 0, SOUTH);
-		player2 = new Player(StdDraw.BLUE, midpoint + 2, midpoint, NORTH);
+		player1 = new Player(StdDraw.YELLOW, midpoint, width - 1, SOUTH);
+		player2 = new Player(StdDraw.BLUE, midpoint, 1, NORTH);
 		//updateBoard();
 		gameOver = false;
 		winner = null;
@@ -97,13 +97,13 @@ public class TronModel {
 
 		int direction = player1.getDirection();
 		if(direction == NORTH){
-			destination1 = new Location(player1.getX(), player1.getY() - 1);
+			destination1 = new Location(player1.getX(), player1.getY() + 1);
 		}
 		else if(direction == EAST){
 			destination1 = new Location(player1.getX() + 1, player1.getY());
 		}
 		else if (direction == SOUTH){
-			destination1 = new Location(player1.getX(), player1.getY() + 1);
+			destination1 = new Location(player1.getX(), player1.getY() - 1);
 		}
 		else{
 			destination1 = new Location(player1.getX() - 1, player1.getY());
@@ -111,13 +111,13 @@ public class TronModel {
 
 		direction = player2.getDirection();
 		if(direction == NORTH){
-			destination2 = new Location(player2.getX(), player2.getY() - 1);
+			destination2 = new Location(player2.getX(), player2.getY() + 1);
 		}
 		else if(direction == EAST){
 			destination2 = new Location(player2.getX() + 1, player2.getY());
 		}
 		else if (direction == SOUTH){
-			destination2 = new Location(player2.getX(), player2.getY() + 1);
+			destination2 = new Location(player2.getX(), player2.getY() - 1);
 		}
 		else{
 			destination2 = new Location(player2.getX() - 1, player2.getY());

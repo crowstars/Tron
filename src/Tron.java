@@ -101,8 +101,8 @@ public class Tron {
 		for (int i = 0; i < 20; i++) { 
 			for (int j = 0; j < 20; j++) { 
 				
-				double xLocation = ((j + 1) * 0.035) + 0.15; 
-				double yLocation = ((i + 1) * 0.035) + 0.21;
+				double xLocation = (j * 0.035) + 0.15; 
+				double yLocation = (i * 0.035) + 0.21;
 				
 				if(display[i][j] != null){
 				if (display[i][j].equals(Color.YELLOW)) {
