@@ -18,8 +18,8 @@ public class TronModel {
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
-		player1 = new Player(StdDraw.YELLOW, midpoint, width - 1, SOUTH);
-		player2 = new Player(StdDraw.BLUE, midpoint, 1, NORTH);
+		player1 = new Player(StdDraw.YELLOW, midpoint, 1, WEST);
+		player2 = new Player(StdDraw.BLUE, midpoint, width - 1, EAST);
 		//updateBoard();
 		gameOver = false;
 		winner = null;
@@ -48,30 +48,7 @@ public class TronModel {
 
 	//keep returning null if nobody has won yet, otherwise return player that has won
 	public Color getWinner(){
-		//check if player 1 ran into wall
-		if(player1.getX() == 0 || player1.getY() == 0 || player1.getX() == 19 || player1.getY() == 19){
-			System.out.println("wall");
-			return player2.getColor();
-		}
-		
-		//check if player 2 ran into wall 
-		if(player2.getX() == 0 || player2.getY() == 0 || player2.getX() == 19 || player2.getY() == 19){
-			System.out.println("wall");
-			return player1.getColor();
-		}
-		
-		//commented out for the time being until everything else is settled 
-		//check if player 1 ran into trail 
-//		if(!isEmpty(player1.getX(), player1.getY())){
-//			return player2.getColor();
-//		}
-		
-//		//check if player 2 ran into trail
-//		if(!isEmpty(player2.getX(), player2.getX())){
-//			return player1.getColor();
-//		}
-		
-		return null;
+		return winner;
 	}
 
 	public Player getPlayer1(){
@@ -96,13 +73,14 @@ public class TronModel {
 		Location destination2;
 
 		int direction = player1.getDirection();
-		if(direction == NORTH){
+		if(direction == WEST){
 			destination1 = new Location(player1.getX(), player1.getY() + 1);
 		}
-		else if(direction == EAST){
+		else if(direction == NORTH){
 			destination1 = new Location(player1.getX() + 1, player1.getY());
 		}
-		else if (direction == SOUTH){
+		else if (direction == EAST){
+			//actually east
 			destination1 = new Location(player1.getX(), player1.getY() - 1);
 		}
 		else{
@@ -110,13 +88,13 @@ public class TronModel {
 		}
 
 		direction = player2.getDirection();
-		if(direction == NORTH){
+		if(direction == WEST){
 			destination2 = new Location(player2.getX(), player2.getY() + 1);
 		}
-		else if(direction == EAST){
+		else if(direction == NORTH){
 			destination2 = new Location(player2.getX() + 1, player2.getY());
 		}
-		else if (direction == SOUTH){
+		else if (direction == EAST){
 			destination2 = new Location(player2.getX(), player2.getY() - 1);
 		}
 		else{
