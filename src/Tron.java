@@ -49,10 +49,10 @@ public class Tron {
 		// Copied from the Learn Java in N Games program AsteroidRally
 
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
-			model.setPlayer1Direction(EAST);
+			model.setPlayer1Direction(WEST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_D)) {
-			model.setPlayer1Direction(WEST);
+			model.setPlayer1Direction(EAST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_W)) {
 			model.setPlayer1Direction(NORTH);
@@ -63,10 +63,10 @@ public class Tron {
 
 
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_J)) {
-			model.setPlayer2Direction(EAST);
+			model.setPlayer2Direction(WEST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_L)) {
-			model.setPlayer2Direction(WEST);
+			model.setPlayer2Direction(EAST);
 		}
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_I)) {
 			model.setPlayer2Direction(NORTH);
