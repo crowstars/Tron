@@ -81,12 +81,12 @@ public class Tron {
 											// drawing rectangle over it
 		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
 
-		if (model.getWinnerColor().equals(StdDraw.YELLOW)) {
+		if (model.getWinner().equals(StdDraw.YELLOW)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
 		}
 
-		if (model.getWinnerColor().equals(StdDraw.BLUE)) {
+		if (model.getWinner().equals(StdDraw.BLUE)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 2 Wins!");
 		}
@@ -167,6 +167,7 @@ public class Tron {
 			System.out.println("clock");
 		}
 
+		handleWinner();
 		waitForSpace();
 		runGame(); // run game again
 	}
