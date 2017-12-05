@@ -105,22 +105,22 @@ public class TronModel {
 		if(destination1.getRow() >= board.length || destination1.getColumn() >= board.length || destination1.getRow() <= 0 || destination1.getColumn() <= 0){
 			gameOver = true;
 			winner = player2.getColor();
-			System.out.println("Player 1 ran into wall");
+			System.out.println("Player 1 ran into wall at " + player1.getX() + ", " + player1.getY());
 		}
 		else if(destination2.getRow() >= board.length || destination2.getColumn() >= board.length || destination2.getRow() <= 0 || destination2.getColumn() <= 0){
 			gameOver = true;
 			winner = player1.getColor();
-			System.out.println("Player 2 ran into wall");
+			System.out.println("Player 2 ran into wall at " + player2.getX() + ", " + player2.getY());
 		}
 		else if(board[destination1.getRow()][destination1.getColumn()] != null){
 			gameOver = true;
 			winner = player2.getColor();
-			System.out.println("Player 1 ran into light trail");
+			System.out.println("Player 1 ran into light trail at " + player1.getX() + ", " + player1.getY());
 		}
 		else if(board[destination2.getRow()][destination2.getColumn()] != null){
 			gameOver = true;
 			winner = player1.getColor();
-			System.out.println("Player 2 ran into light trail");
+			System.out.println("Player 2 ran into light trail at " + player2.getX() + ", " + player2.getY());
 		}
 		
 		System.out.println(destination1.getColumn());
