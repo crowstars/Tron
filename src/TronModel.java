@@ -74,14 +74,14 @@ public class TronModel {
 
 		int direction = player1.getDirection();
 		if(direction == WEST){
-			destination1 = new Location(player1.getX(), player1.getY() + 1);
+			destination1 = new Location(player1.getX(), player1.getY() - 1);
 		}
 		else if(direction == NORTH){
 			destination1 = new Location(player1.getX() + 1, player1.getY());
 		}
 		else if (direction == EAST){
 			//actually east
-			destination1 = new Location(player1.getX(), player1.getY() - 1);
+			destination1 = new Location(player1.getX(), player1.getY() + 1);
 		}
 		else{
 			destination1 = new Location(player1.getX() - 1, player1.getY());
@@ -89,13 +89,13 @@ public class TronModel {
 
 		direction = player2.getDirection();
 		if(direction == WEST){
-			destination2 = new Location(player2.getX(), player2.getY() + 1);
+			destination2 = new Location(player2.getX(), player2.getY() - 1);
 		}
 		else if(direction == NORTH){
 			destination2 = new Location(player2.getX() + 1, player2.getY());
 		}
 		else if (direction == EAST){
-			destination2 = new Location(player2.getX(), player2.getY() - 1);
+			destination2 = new Location(player2.getX(), player2.getY() + 1);
 		}
 		else{
 			destination2 = new Location(player2.getX() - 1, player2.getY());
