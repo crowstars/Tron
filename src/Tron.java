@@ -150,17 +150,6 @@ public class Tron {
 		drawBasic();
 		waitForSpace();
 
-		/*while (true) {
-			handleKeyPresses();
-			showBoard();
-			if(model.getWinner() != null) break;
-			model.movePlayers();
-			StdDraw.pause(50); //slow game clock for testing!
-			System.out.println("clock");
-		}
-
-		handleWinner();*/
-
 		while(!model.isGameOver()){
 			handleKeyPresses();
 			showBoard();
