@@ -46,6 +46,10 @@ public class Tron {
 		StdDraw.text(0.75, 0.1, "Steer with IJKL");
 
 		StdDraw.text(0.5, 0.05, "Press SPACE to start");
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.2, 0.05, "Player 1 Points: ");
+		StdDraw.text(0.8, 0.05, "Player 2 Points: ");
 	}
 
 	public void handleKeyPresses() {
@@ -96,7 +100,7 @@ public class Tron {
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
 	}
-
+	
 	public void showBoard() {
 		Color[][] display = model.getBoard();
 
