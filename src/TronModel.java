@@ -13,7 +13,8 @@ public class TronModel {
 	public final int EAST = 1;
 	public final int SOUTH = 2;
 	public final int WEST = 3;
-
+	
+	//Creates the board and sets the starting position for the players
 	public TronModel(int width){
 		board = new Color[width][width];
 		int midpoint = width/2;
