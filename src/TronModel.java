@@ -63,18 +63,18 @@ public class TronModel {
 
 	public void setPlayer1Direction(int direction){
 		int currentDirection = player1.getDirection();
-		if(!((currentDirection == NORTH && direction == SOUTH) || (currentDirection == SOUTH && direction == NORTH)
-				|| (currentDirection == EAST && direction == WEST) || (currentDirection == WEST && direction == EAST))){
+		//if(!((currentDirection == NORTH && direction == SOUTH) || (currentDirection == SOUTH && direction == NORTH)
+				//|| (currentDirection == EAST && direction == WEST) || (currentDirection == WEST && direction == EAST))){
 		player1.setDirection(direction);
-		}
+		//}
 	}
 
 	public void setPlayer2Direction(int direction){
 		int currentDirection = player1.getDirection();
-		if(!((currentDirection == NORTH && direction == SOUTH) || (currentDirection == SOUTH && direction == NORTH)
-				|| (currentDirection == EAST && direction == WEST) || (currentDirection == WEST && direction == EAST))){
+		//if(!((currentDirection == NORTH && direction == SOUTH) || (currentDirection == SOUTH && direction == NORTH)
+				//|| (currentDirection == EAST && direction == WEST) || (currentDirection == WEST && direction == EAST))){
 			player2.setDirection(direction);
-		}
+		//}
 	}
 
 	public void movePlayers(){
