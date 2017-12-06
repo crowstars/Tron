@@ -12,7 +12,7 @@ public class Tron {
 
 	public TronModel model;
 
-	public final int SPEED = 30; // speed of game clock.
+	public final int SPEED = 50; // speed of game clock.
 	public final int BOARD_SIZE = 40; // size of board
 
 	public static void main(String args[]) {
@@ -95,36 +95,6 @@ public class Tron {
 		}
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
-	}
-
-	// bottleneck is RIGHT HERE, mabye dynamically redraw?
-	public void showBoard() {
-		Color[][] display = model.getBoard();
-
-		for (int i = 0; i < display.length; i++) {
-			for (int j = 0; j < display.length; j++) {
-
-				double pieceSize = 0.35 / display.length;
-
-				double xLocation = (j * pieceSize * 2) + 0.15;// change this
-				double yLocation = (i * pieceSize * 2) + 0.21;// change this
-
-				if (display[i][j] != null) {
-					if (display[i][j].equals(Color.YELLOW)) {
-						StdDraw.setPenColor(player1Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize); // change
-																								// this
-					}
-
-					else if (display[i][j].equals(Color.BLUE)) {
-						StdDraw.setPenColor(player2Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);// change
-																							// this
-					}
-				}
-			}
-		}
-		StdDraw.show();
 	}
 
 	// dynamically redraws board to be faster
