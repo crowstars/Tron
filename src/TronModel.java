@@ -82,9 +82,9 @@ public class TronModel {
 			destination1 = new Location(player1.getX() + 1, player1.getY());
 		}
 		else if (direction == EAST){
-			//actually east
 			destination1 = new Location(player1.getX(), player1.getY() + 1);
 		}
+		//Direction is south
 		else{
 			destination1 = new Location(player1.getX() - 1, player1.getY());
 		}
@@ -99,11 +99,12 @@ public class TronModel {
 		else if (direction == EAST){
 			destination2 = new Location(player2.getX(), player2.getY() + 1);
 		}
+		//Direction is south
 		else{
 			destination2 = new Location(player2.getX() - 1, player2.getY());
 		}
 
-		//Test for collisions
+		//Tests for collisions
 		if(destination1.getRow() >= board.length || destination1.getColumn() >= board.length || destination1.getRow() <= 0 || destination1.getColumn() <= 0){
 			gameOver = true;
 			winner = player2.getColor();
