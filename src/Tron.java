@@ -11,8 +11,9 @@ public class Tron {
 	public final int WEST = 3;
 
 	public TronModel model;
-	
-	public final int SPEED = 70; //speed of game clock. 
+
+	public final int SPEED = 50; // speed of game clock.
+	public final int BOARD_SIZE = 40; // size of board
 
 	public static void main(String args[]) {
 		new Tron().runGame();
@@ -63,7 +64,7 @@ public class Tron {
 			model.setPlayer1Direction(SOUTH);
 		}
 
-		//scan inputs for player 2
+		// scan inputs for player 2
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_J)) {
 			model.setPlayer2Direction(WEST);
 		}
@@ -80,7 +81,7 @@ public class Tron {
 
 	public void handleWinner() {
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY); // "clear" indicator display by
-											// drawing rectangle over it
+		// drawing rectangle over it
 		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
 
 		if (model.getWinner().equals(StdDraw.YELLOW)) {
@@ -95,66 +96,42 @@ public class Tron {
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
 	}
-	
-	//all of the set bounds assume a board of size 20...
-	public void showBoard(){
-		Color[][] display = model.getBoard();
 
-		for (int i = 0; i < 20; i++) { 
-			for (int j = 0; j < 20; j++) { 
-				
-				double xLocation = (j * 0.035) + 0.15; 
-				double yLocation = (i * 0.035) + 0.21;
-				
-				if(display[i][j] != null){
-				if (display[i][j].equals(Color.YELLOW)) {
-					StdDraw.setPenColor(player1Color);
-					StdDraw.filledRectangle(xLocation, yLocation, 0.0175, 0.0175);
-				}
+	// dynamically redraws board to be faster
+	public void showBoardFast() {
+		
+		double pieceSize = 0.35 / BOARD_SIZE;
+		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;// change this
+		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;// change this
+		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;// change this
+		double player2Y = (model.getPlayer2().getY() * pieceSize * 2) + 0.21;// change this
+		
+		StdDraw.setPenColor(player1Color);
+		StdDraw.filledRectangle(player1X, player1Y, pieceSize, pieceSize); 
 
-				else if (display[i][j].equals(Color.BLUE)) {
-					StdDraw.setPenColor(player2Color);
-					StdDraw.filledRectangle(xLocation, yLocation, 0.0175, 0.0175);
-				}
-				}
-			}
-		}
+		StdDraw.setPenColor(player2Color);
+		StdDraw.filledRectangle(player2X, player2Y, pieceSize, pieceSize);
+																			
 		StdDraw.show();
 	}
 
-	public void waitForSpace(){
-		while (!StdDraw.isKeyPressed(32)) { // 32 is the num value for the space
-			// bar
-// wait for space to be pressed
-}
-	}
-	
-	//used for debugging
-	public void printColorArray(Color[][] toPrint){
-		for(int i = 0; i < 20; i++){
-			for(int j = 0; j < 20; j++){
-				if(toPrint[j][i] != null){
-					System.out.print(toPrint[j][i].toString() + " ");
-				}
-				else{
-					System.out.print("blank ");
-				}
-			}
-			System.out.println();
+	public void waitForSpace() {
+		while (!StdDraw.isKeyPressed(32)) {
+			// wait for space to be pressed
 		}
 	}
-	
+
 	public void runGame() {
- 		model = new TronModel(20);
+		model = new TronModel(BOARD_SIZE);
 
 		drawBasic();
 		waitForSpace();
 
-		while(!model.isGameOver()){
+		while (!model.isGameOver()) {
 			handleKeyPresses();
-			showBoard();
+			showBoardFast();
 			model.movePlayers();
-			StdDraw.pause(SPEED); //slow game clock for testing!
+			StdDraw.pause(SPEED); // slow game clock for testing!
 			System.out.println("clock");
 		}
 
