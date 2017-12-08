@@ -140,4 +140,7 @@ public class TronModel {
 	public Color getWinnerColor() {
 		return winner;
 	}
+
+	//Accessors for tests
+
 }
