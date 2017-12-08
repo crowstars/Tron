@@ -124,9 +124,10 @@ public class Tron {
 						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);//change this
 					}
 				}
-			}
+			}	
 		}
-=======
+		
+}
 
 	// dynamically redraws board to be faster
 	public void showBoardFast() {
@@ -141,9 +142,7 @@ public class Tron {
 		StdDraw.filledRectangle(player1X, player1Y, pieceSize, pieceSize); 
 
 		StdDraw.setPenColor(player2Color);
-		StdDraw.filledRectangle(player2X, player2Y, pieceSize, pieceSize);
-																			
->>>>>>> d8130d166367b99ddf7538bdd062b7a4b0794f12
+		StdDraw.filledRectangle(player2X, player2Y, pieceSize, pieceSize);																			
 		StdDraw.show();
 	}
 
