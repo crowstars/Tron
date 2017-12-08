@@ -33,7 +33,7 @@ public class Location {
      *
      * @see #Location(int, int)
      */
-    public int getx() {
+    public int getX() {
         return x;
     }
 
@@ -50,7 +50,7 @@ public class Location {
      *
      * @see #Location(int, int)
      */
-    public int gety() {
+    public int getY() {
         return y;
     }
 
