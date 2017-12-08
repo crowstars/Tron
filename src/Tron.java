@@ -1,3 +1,10 @@
+/*WISH LIST
+ * head on collision detection for winners (change in model)
+ * No option for suicide (turning in on yourslef)
+ * GUI for speed (easyness) at begenning 
+ * Sprites for players
+ */
+
 import java.awt.Color;
 import java.util.Arrays;
 
@@ -14,12 +21,16 @@ public class Tron {
 
 	public final int SPEED = 50; // speed of game clock.
 	public final int BOARD_SIZE = 40; // size of board
+	
+	public int player1Points = 0;
+	public int player2Points = 0;
 
 	public static void main(String args[]) {
 		new Tron().runGame();
 	}
 
 	public void drawBasic() {
+		
 		// Color window
 		StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
 		StdDraw.filledRectangle(0.5, 0.5, 0.5, 0.5);
@@ -45,11 +56,13 @@ public class Tron {
 		StdDraw.text(0.75, 0.15, "Player 2");
 		StdDraw.text(0.75, 0.1, "Steer with IJKL");
 
-		StdDraw.text(0.5, 0.05, "Press SPACE to start");
+		StdDraw.text(0.5, 0.05, "SPACE to start");
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(0.2, 0.05, "Player 1 Points: ");
-		StdDraw.text(0.8, 0.05, "Player 2 Points: ");
+		StdDraw.text(0.25, 0.05, "Points: " + player1Points);
+		StdDraw.text(0.75, 0.05, "Points: " + player2Points);
+		
+		StdDraw.enableDoubleBuffering();
 	}
 
 	public void handleKeyPresses() {
@@ -91,11 +104,13 @@ public class Tron {
 		if (model.getWinner().equals(StdDraw.YELLOW)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
+			player1Points++;
 		}
 
 		if (model.getWinner().equals(StdDraw.BLUE)) {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(0.5, 0.12, "Player 2 Wins!");
+			player2Points++;
 		}
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
@@ -153,8 +168,6 @@ public class Tron {
 
 	public void runGame() {
 		model = new TronModel(BOARD_SIZE);
-		
-		StdDraw.enableDoubleBuffering();
 
 		drawBasic();
 		waitForSpace();
