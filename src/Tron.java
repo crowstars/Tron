@@ -100,7 +100,6 @@ public class Tron {
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
 	}
-<<<<<<< HEAD
 	
 	public void showBoard() {
 		Color[][] display = model.getBoard();
