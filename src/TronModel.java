@@ -64,11 +64,18 @@ public class TronModel {
 	}
 
 	public void setPlayer1Direction(int direction) {
-		player1.setDirection(direction);
+		//stops player from committing suicide: any direction thats 2 away from the
+		//integer value of the current direction is the opposite of the current direction,
+		//and therefore illegal
+		if(Math.abs(direction - player1.getDirection()) != 2){
+			player1.setDirection(direction);
+		}
 	}
 
 	public void setPlayer2Direction(int direction) {
-		player2.setDirection(direction);
+		if(Math.abs(direction - player2.getDirection()) != 2){
+			player2.setDirection(direction);
+		}
 	}
 
 	public void movePlayers() {
