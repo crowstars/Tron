@@ -1,15 +1,15 @@
 public class Location {
     //Location Copied from the Learn Java in N Games program Go
     /** @see #Location(int, int) */
-    private int column;
+    private int x;
 
     /** @see #Location(int, int) */
-    private int row;
+    private int y;
 
-    /** Row is zero-based from top, column zero-based from top. */
-    public Location(int row, int column) {
-        this.row = row;
-        this.column = column;
+    /** y is zero-based from top, x zero-based from top. */
+    public Location(int y, int x) {
+        this.y = y;
+        this.x = x;
     }
 
     @Override
@@ -21,40 +21,40 @@ public class Location {
         if (getClass() != obj.getClass())
             return false;
         Location other = (Location) obj;
-        if (column != other.column)
+        if (x != other.x)
             return false;
-        if (row != other.row)
+        if (y != other.y)
             return false;
         return true;
     }
 
     /**
-     * Returns the column of this location.
+     * Returns the x of this location.
      *
      * @see #Location(int, int)
      */
-    public int getColumn() {
-        return column;
+    public int getx() {
+        return x;
     }
 
     /** Returns an array of the four neighboring locations. */
     public Location[] getNeighbors() {
-        return new Location[] {new Location(row - 1, column),
-                new Location(row + 1, column),
-                new Location(row, column - 1),
-                new Location(row, column + 1)};
+        return new Location[] {new Location(y - 1, x),
+                new Location(y + 1, x),
+                new Location(y, x - 1),
+                new Location(y, x + 1)};
     }
 
     /**
-     * Returns the row of this location.
+     * Returns the y of this location.
      *
      * @see #Location(int, int)
      */
-    public int getRow() {
-        return row;
+    public int gety() {
+        return y;
     }
 
     public String toString(){
-        return "" + row + ", " + column;
+        return "" + y + ", " + x;
     }
 }

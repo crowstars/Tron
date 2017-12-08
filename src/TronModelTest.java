@@ -42,4 +42,8 @@ public class TronModelTest {
         assertEquals(expectedP2.getDirection(), model.getPlayer2().getDirection());
     }
 
+    public void movePlayersTest() throws Exception{
+
+    }
+
 }
