@@ -150,5 +150,9 @@ public class TronModel {
 	}
 
 	//Accessors for tests
+	//Accessors and Modifiers for tests
+	public void setColor(int x, int y, Color color){
+		board[y][x] = color;
+	}
 
 }

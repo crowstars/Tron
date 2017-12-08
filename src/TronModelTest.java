@@ -6,6 +6,26 @@ import static org.junit.Assert.*;
 public class TronModelTest {
 
     TronModel model;
+    TronModel filledModel;
+
+    /*
+        Diagram of filledModel when initialized
+        ---------------------------
+       |   |   |   |   |   |   |   |
+    *   ----------------------------
+    *  |   |   |   | Y |   |   |   |
+    *  -----------------------------
+    *  |   |   | Y | Y |   |   |   |
+    *  -----------------------------
+    *  |   |   |   |   |   |   |   |
+    *  -----------------------------
+    *  |   |   |   | B | B |   |   |
+    *  -----------------------------
+    *  |   |   |   | B |   |   |   |
+    *  -----------------------------
+    *  |   |   |   |   |   |   |   |
+    *  -----------------------------
+    * */
     public final int NORTH = 0;
     public final int EAST = 1;
     public final int SOUTH = 2;
@@ -14,6 +34,13 @@ public class TronModelTest {
     @Before
     public void init(){
         model = new TronModel(5);
+        filledModel = new TronModel(5);
+        filledModel.setColor(3,1,StdDraw.YELLOW);
+        filledModel.setColor(3,2,StdDraw.YELLOW);
+        filledModel.setColor(2,2,StdDraw.YELLOW);
+        filledModel.setColor(3,5,StdDraw.BLUE);
+        filledModel.setColor(3,4,StdDraw.BLUE);
+        filledModel.setColor(4,4,StdDraw.BLUE);
     }
 
     @Test
