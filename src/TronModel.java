@@ -103,32 +103,32 @@ public class TronModel {
 		}
 
 		// Tests for collisions
-		if (destination1.getRow() >= board.length || destination1.getColumn() >= board.length
-				|| destination1.getRow() <= 0 || destination1.getColumn() <= 0) {
+		if (destination1.getY() >= board.length || destination1.getX() >= board.length
+				|| destination1.getY() <= 0 || destination1.getX() <= 0) {
 			gameOver = true;
 			winner = player2.getColor();
 			System.out.println("Player 1 ran into wall at " + destination1);
-		} else if (destination2.getRow() >= board.length || destination2.getColumn() >= board.length
-				|| destination2.getRow() <= 0 || destination2.getColumn() <= 0) {
+		} else if (destination2.getY() >= board.length || destination2.getX() >= board.length
+				|| destination2.getY() <= 0 || destination2.getX() <= 0) {
 			gameOver = true;
 			winner = player1.getColor();
 			System.out.println("Player 2 ran into wall at " + destination2);
-		} else if (board[destination1.getRow()][destination1.getColumn()] != null) {
+		} else if (board[destination1.getY()][destination1.getX()] != null) {
 			gameOver = true;
 			winner = player2.getColor();
 			System.out.println("Player 1 ran into light trail at " + destination1);
-		} else if (board[destination2.getRow()][destination2.getColumn()] != null) {
+		} else if (board[destination2.getY()][destination2.getX()] != null) {
 			gameOver = true;
 			winner = player1.getColor();
 			System.out.println("Player 2 ran into light trail at " + destination2);
 		}
 
 		if (!gameOver) {
-			player1.setX(destination1.getRow());
-			player1.setY(destination1.getColumn());
+			player1.setX(destination1.getY());
+			player1.setY(destination1.getX());
 
-			player2.setX(destination2.getRow());
-			player2.setY(destination2.getColumn());
+			player2.setX(destination2.getY());
+			player2.setY(destination2.getX());
 
 			System.out.println("Player 1 at (" + destination1 + ")");
 			System.out.println("Player 2 at (" + destination2 + ")");

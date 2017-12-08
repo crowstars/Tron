@@ -22,10 +22,10 @@ public class TronModelTest {
         //assertEquals(expectedBoard, model.getBoard());
         Location p1startingLocation = new Location(5/2, 1);
         Location p2startingLocation = new Location(5/2, 4);
-        assertEquals(p1startingLocation.getRow(), model.getPlayer1().getY());
-        assertEquals(p1startingLocation.getColumn(), model.getPlayer1().getX());
-        assertEquals(p2startingLocation.getRow(), model.getPlayer2().getY());
-        assertEquals(p2startingLocation.getColumn(), model.getPlayer2().getX());
+        assertEquals(p1startingLocation.getY(), model.getPlayer1().getY());
+        assertEquals(p1startingLocation.getX(), model.getPlayer1().getX());
+        assertEquals(p2startingLocation.getY(), model.getPlayer2().getY());
+        assertEquals(p2startingLocation.getX(), model.getPlayer2().getX());
     }
 
     public void constructorTest() throws Exception{
