@@ -19,8 +19,8 @@ public class TronModel {
 	public TronModel(int width) {
 		board = new Color[width][width];
 		int midpoint = width / 2;
-		player1 = new Player(StdDraw.YELLOW, midpoint, 1, EAST);
-		player2 = new Player(StdDraw.BLUE, midpoint, width-1, WEST);
+		player1 = new Player(StdDraw.YELLOW, 1, midpoint, EAST);
+		player2 = new Player(StdDraw.BLUE, width - 1, midpoint, WEST);
 		// updateBoard();
 		gameOver = false;
 		winner = null;
@@ -110,6 +110,7 @@ public class TronModel {
 		}
 
 		// Tests for collisions
+		//if(destination1.getX() == destination2.getX() && destin)
 		if (destination1.getY() >= board.length || destination1.getX() >= board.length
 				|| destination1.getY() <= 0 || destination1.getX() <= 0) {
 			gameOver = true;
