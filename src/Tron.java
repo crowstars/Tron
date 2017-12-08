@@ -12,8 +12,8 @@ public class Tron {
 
 	public TronModel model;
 
-	public final int SPEED = 30; // speed of game clock.
-	public final int BOARD_SIZE = 40; //size of board
+	public final int SPEED = 50; // speed of game clock.
+	public final int BOARD_SIZE = 40; // size of board
 
 	public static void main(String args[]) {
 		new Tron().runGame();
@@ -100,6 +100,7 @@ public class Tron {
 
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
 	}
+<<<<<<< HEAD
 	
 	public void showBoard() {
 		Color[][] display = model.getBoard();
@@ -125,11 +126,29 @@ public class Tron {
 				}
 			}
 		}
+=======
+
+	// dynamically redraws board to be faster
+	public void showBoardFast() {
+		
+		double pieceSize = 0.35 / BOARD_SIZE;
+		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;// change this
+		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;// change this
+		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;// change this
+		double player2Y = (model.getPlayer2().getY() * pieceSize * 2) + 0.21;// change this
+		
+		StdDraw.setPenColor(player1Color);
+		StdDraw.filledRectangle(player1X, player1Y, pieceSize, pieceSize); 
+
+		StdDraw.setPenColor(player2Color);
+		StdDraw.filledRectangle(player2X, player2Y, pieceSize, pieceSize);
+																			
+>>>>>>> d8130d166367b99ddf7538bdd062b7a4b0794f12
 		StdDraw.show();
 	}
 
 	public void waitForSpace() {
-		while (!StdDraw.isKeyPressed(32)) { 
+		while (!StdDraw.isKeyPressed(32)) {
 			// wait for space to be pressed
 		}
 	}
@@ -142,7 +161,7 @@ public class Tron {
 
 		while (!model.isGameOver()) {
 			handleKeyPresses();
-			showBoard();
+			showBoardFast();
 			model.movePlayers();
 			StdDraw.pause(SPEED); // slow game clock for testing!
 			System.out.println("clock");
