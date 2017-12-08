@@ -28,6 +28,7 @@ public class TronModelTest {
         assertEquals(p2startingLocation.getX(), model.getPlayer2().getX());
     }
 
+    @Test
     public void constructorTest() throws Exception{
         int[] expectedBoard = new int[5];
         Player expectedP1 = new Player(StdDraw.YELLOW, 5/2, 1, EAST);

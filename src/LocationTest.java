@@ -13,9 +13,9 @@ public class LocationTest {
 
 	@Test
 	public void testStorage() {
-		assertEquals(locate.getColumn(), 4);
+		assertEquals(locate.getX(), 4);
 		locate = new Location(6, 3);
-		assertEquals(locate.getColumn(), 3);
+		assertEquals(locate.getY(), 3);
 	}
 
 }
