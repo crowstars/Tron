@@ -153,6 +153,8 @@ public class Tron {
 
 	public void runGame() {
 		model = new TronModel(BOARD_SIZE);
+		
+		StdDraw.enableDoubleBuffering();
 
 		drawBasic();
 		waitForSpace();
