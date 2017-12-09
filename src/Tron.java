@@ -1,6 +1,6 @@
 
 /*WISH LIST
- *Color setup GUI
+ *Color setup GUI (pick yo player color!)
  * 
  */
 
@@ -8,9 +8,7 @@ import java.awt.Color;
 import java.util.Arrays;
 
 public class Tron {
-	public final static Color player1Color = StdDraw.BLUE;
-	public final Color player2Color = StdDraw.YELLOW;
-
+	
 	public final int NORTH = 0;
 	public final int EAST = 1;
 	public final int SOUTH = 2;
@@ -22,6 +20,9 @@ public class Tron {
 
 	public int player1Points = 0;
 	public int player2Points = 0;
+	
+	public Color player1Color = StdDraw.BLUE;
+	public Color player2Color = StdDraw.YELLOW;
 
 	public int gameSpeed = 50;
 
@@ -63,23 +64,114 @@ public class Tron {
 		// wait for click in three regions
 		while (!StdDraw.isMousePressed()) {
 		}
+		
+		switch(threeOptionMenu()){
+		case 0:
+			difficultySelect();
+			break;
+		case 1:
+			gameSpeed = 80;
+			break;
+		case 2:
+			gameSpeed = 50;
+			break;
+		case 3:
+			gameSpeed = 30;
+			break;
+		}
+		
+		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+		}
+	}
 
-		// calculate mouse ranges, if within bounds, continue
+	public void player1ColorSelect() {
+		clearInfoDisplay();
+
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, 0.15, "Select Player 1 Color");
+
+		StdDraw.setPenColor(StdDraw.ORANGE);
+		StdDraw.text(0.2775, 0.085, "Orange");
+
+		StdDraw.setPenColor(StdDraw.YELLOW);
+		StdDraw.text(0.5, 0.085, "Yellow");
+
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.text(0.7225, 0.085, "Red");
+		
+		while (!StdDraw.isMousePressed()) {
+		}
+		
+		switch(threeOptionMenu()){
+		case 0:
+			player1ColorSelect();
+			break;
+		case 1:
+			player1Color = StdDraw.ORANGE;
+			break;
+		case 2:
+			player1Color = StdDraw.YELLOW;
+			break;
+		case 3:
+			player1Color = StdDraw.RED;
+			break;
+		}
+		
+		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+		}
+
+	}
+
+	public void player2ColorSelect() {
+		clearInfoDisplay();
+
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, 0.15, "Select Player 2 Color");
+		
+		StdDraw.setPenColor(StdDraw.GREEN);
+		StdDraw.text(0.2775, 0.085, "Green");
+
+		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.text(0.5, 0.085, "BLUE");
+
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.7225, 0.085, "White");
+		
+		while (!StdDraw.isMousePressed()) {
+		}
+		
+		switch(threeOptionMenu()){
+		case 0:
+			player1ColorSelect();
+			break;
+		case 1:
+			player2Color = StdDraw.GREEN;
+			break;
+		case 2:
+			player2Color = StdDraw.BLUE;
+			break;
+		case 3:
+			player2Color = StdDraw.WHITE;
+			break;
+		}
+		
+		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+		}
+	}
+
+	public int threeOptionMenu() {
 		if (StdDraw.mouseY() < 0.18 && StdDraw.mouseY() > 0.02 && StdDraw.mouseX() > 0.055
 				&& StdDraw.mouseX() < 0.945) {
-			if (StdDraw.mouseX() < 0.4255) {
-				System.out.println("EASY");
-				gameSpeed = 80;
-			} else if (StdDraw.mouseX() < 0.648) {
-				System.out.println("MEDIUM");
-				gameSpeed = 50;
-			} else {
-				System.out.println("HARD");
-				gameSpeed = 30;
-			}
-		} else {
-			difficultySelect();
+			if (StdDraw.mouseX() < 0.4255)
+				return 1;
+
+			else if (StdDraw.mouseX() < 0.648)
+				return 2;
+
+			else
+				return 3;
 		}
+		return 0;
 	}
 
 	public void drawTutorial() {
@@ -141,11 +233,11 @@ public class Tron {
 	public void handleWinner() {
 		clearInfoDisplay();
 		StdDraw.setPenColor(StdDraw.BLACK);
-		
-		if(model.getWinner() == null){
+
+		if (model.getWinner() == null) {
 			StdDraw.text(0.5, 0.12, "Nobody Wins!");
 		}
-		
+
 		else if (model.getWinner().equals(StdDraw.YELLOW)) {
 			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
 			player1Points++;
@@ -179,7 +271,7 @@ public class Tron {
 					else if (display[i][j].equals(Color.BLUE)) {
 						StdDraw.setPenColor(player2Color);
 						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);
-																							
+
 					}
 				}
 			}
@@ -191,11 +283,10 @@ public class Tron {
 	public void showBoardFast() {
 
 		double pieceSize = 0.35 / BOARD_SIZE;
-		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;						
-		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;						
-		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;				
+		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;
+		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;
+		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;
 		double player2Y = (model.getPlayer2().getY() * pieceSize * 2) + 0.21;
-																			
 
 		StdDraw.setPenColor(player1Color);
 		StdDraw.filledRectangle(player1X, player1Y, pieceSize, pieceSize);
@@ -216,6 +307,8 @@ public class Tron {
 
 		drawBasic();
 		difficultySelect();
+		player1ColorSelect();
+		player2ColorSelect();
 		drawTutorial();
 		waitForSpace();
 
@@ -228,11 +321,12 @@ public class Tron {
 				StdDraw.pause(gameSpeed); // slow game clock for testing!
 				System.out.println("clock");
 			}
-            
-			StdDraw.disableDoubleBuffering(); //have to disable to make some static changes
+
+			StdDraw.disableDoubleBuffering(); // have to disable to make some
+												// static changes
 			handleWinner();
-			waitForSpace(); 
-			
+			waitForSpace();
+
 			model = new TronModel(BOARD_SIZE);
 			drawBasic();
 			drawTutorial();
