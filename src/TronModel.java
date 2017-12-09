@@ -18,9 +18,13 @@ public class TronModel {
 	// Creates the board and sets the starting position for the players
 	public TronModel(int width) {
 		board = new Color[width][width];
+		
 		int midpoint = width / 2;
-		player1 = new Player(StdDraw.YELLOW, 1, midpoint, EAST);
-		player2 = new Player(StdDraw.BLUE, width - 1, midpoint, WEST);
+		int player1Start = midpoint - (midpoint / 2);
+		int player2Start = midpoint + (midpoint / 2);
+		
+		player1 = new Player(StdDraw.YELLOW, player1Start, midpoint, EAST);
+		player2 = new Player(StdDraw.BLUE, player2Start, midpoint, WEST);
 		// updateBoard();
 		gameOver = false;
 		winner = null;

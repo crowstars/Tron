@@ -1,9 +1,10 @@
 
 /*WISH LIST
  * fix head on collision mode1
+ * make staring position suck less
  * 
  *WORKING ON>>>>
- *GUIs for setup (gameSpeed and color)
+ *GUIs for setup (color)
  * 
  */
 
