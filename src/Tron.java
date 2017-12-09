@@ -1,10 +1,6 @@
 
 /*WISH LIST
- * fix head on collision mode1
- * make staring position suck less
- * 
- *WORKING ON>>>>
- *GUIs for setup (color)
+ *Color setup GUI
  * 
  */
 
@@ -60,9 +56,9 @@ public class Tron {
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.15, "Select Difficulty");
 
-		StdDraw.text(0.2775, 0.1, "Easy");
-		StdDraw.text(0.5, 0.1, "Medium");
-		StdDraw.text(0.7225, 0.1, "Hard");
+		StdDraw.text(0.2775, 0.085, "Easy");
+		StdDraw.text(0.5, 0.085, "Medium");
+		StdDraw.text(0.7225, 0.085, "Hard");
 
 		// wait for click in three regions
 		while (!StdDraw.isMousePressed()) {
@@ -143,18 +139,19 @@ public class Tron {
 	}
 
 	public void handleWinner() {
-		StdDraw.setPenColor(StdDraw.LIGHT_GRAY); // "clear" indicator display by
-		// drawing rectangle over it
-		StdDraw.filledRectangle(0.5, 0.10, 0.44, 0.08);
-
-		if (model.getWinner().equals(StdDraw.YELLOW)) {
-			StdDraw.setPenColor(StdDraw.BLACK);
+		clearInfoDisplay();
+		StdDraw.setPenColor(StdDraw.BLACK);
+		
+		if(model.getWinner() == null){
+			StdDraw.text(0.5, 0.12, "Nobody Wins!");
+		}
+		
+		else if (model.getWinner().equals(StdDraw.YELLOW)) {
 			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
 			player1Points++;
 		}
 
-		if (model.getWinner().equals(StdDraw.BLUE)) {
-			StdDraw.setPenColor(StdDraw.BLACK);
+		else {
 			StdDraw.text(0.5, 0.12, "Player 2 Wins!");
 			player2Points++;
 		}
@@ -170,20 +167,19 @@ public class Tron {
 
 				double pieceSize = 0.35 / display.length;
 
-				double xLocation = (j * pieceSize * 2) + 0.15;// change this
-				double yLocation = (i * pieceSize * 2) + 0.21;// change this
+				double xLocation = (j * pieceSize * 2) + 0.15;
+				double yLocation = (i * pieceSize * 2) + 0.21;
 
 				if (display[i][j] != null) {
 					if (display[i][j].equals(Color.YELLOW)) {
 						StdDraw.setPenColor(player1Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize); // change
-																								// this
+						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);
 					}
 
 					else if (display[i][j].equals(Color.BLUE)) {
 						StdDraw.setPenColor(player2Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);// change
-																							// this
+						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);
+																							
 					}
 				}
 			}
@@ -195,14 +191,11 @@ public class Tron {
 	public void showBoardFast() {
 
 		double pieceSize = 0.35 / BOARD_SIZE;
-		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;// change
-																				// this
-		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;// change
-																				// this
-		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;// change
-																				// this
-		double player2Y = (model.getPlayer2().getY() * pieceSize * 2) + 0.21;// change
-																				// this
+		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;						
+		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;						
+		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;				
+		double player2Y = (model.getPlayer2().getY() * pieceSize * 2) + 0.21;
+																			
 
 		StdDraw.setPenColor(player1Color);
 		StdDraw.filledRectangle(player1X, player1Y, pieceSize, pieceSize);
@@ -235,7 +228,8 @@ public class Tron {
 				StdDraw.pause(gameSpeed); // slow game clock for testing!
 				System.out.println("clock");
 			}
-
+            
+			StdDraw.disableDoubleBuffering(); //have to disable to make some static changes
 			handleWinner();
 			waitForSpace(); 
 			

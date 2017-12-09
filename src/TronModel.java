@@ -114,8 +114,12 @@ public class TronModel {
 		}
 
 		// Tests for collisions
-		//if(destination1.getX() == destination2.getX() && destin)
-		if (destination1.getY() >= board.length || destination1.getX() >= board.length
+		if(destination1.getX() == destination2.getX() && destination1.getY() == destination2.getY()){
+			gameOver = true;
+			winner = null;
+			System.out.println("draw game!");
+		}
+		else if (destination1.getY() >= board.length || destination1.getX() >= board.length
 				|| destination1.getY() <= 0 || destination1.getX() <= 0) {
 			gameOver = true;
 			winner = player2.getColor();
