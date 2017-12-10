@@ -1,15 +1,19 @@
 
 /*WISH LIST
+ * Add collision sounds, soundtrack + ability to turn these on/off
  *Stress everything like mad to check for things that were forgotten 
  * Fix that one bug where there's a gap between head on collisions (hard!)
  * Make everything look pretty + add comments (save for monday)
+ * Remove print statements (all of them!)
  */
 
+//Player Lose Sound Clip from LittleRobotSoundFactory on freesound.org, "8 bit Sound Effects Library"
+//Background Sound from from HiccupVirus on freesound.org, "Mono tron bike engine.wav"
+
 import java.awt.Color;
-import java.util.Arrays;
 
 public class Tron {
-	
+
 	public final int NORTH = 0;
 	public final int EAST = 1;
 	public final int SOUTH = 2;
@@ -21,11 +25,14 @@ public class Tron {
 
 	public int player1Points = 0;
 	public int player2Points = 0;
-	
+
 	public Color player1Color = StdDraw.BLUE;
 	public Color player2Color = StdDraw.YELLOW;
 
 	public int gameSpeed = 50;
+	
+	public boolean effectsOn = true;
+	public boolean soundtrackOn = true;
 
 	public static void main(String args[]) {
 		new Tron().runGame();
@@ -61,8 +68,8 @@ public class Tron {
 		StdDraw.text(0.2775, 0.085, "Easy");
 		StdDraw.text(0.5, 0.085, "Medium");
 		StdDraw.text(0.7225, 0.085, "Hard");
-		
-		switch(threeOptionMenu()){
+
+		switch (threeOptionMenu()) {
 		case 0:
 			difficultySelect();
 			break;
@@ -76,7 +83,7 @@ public class Tron {
 			gameSpeed = 30;
 			break;
 		}
-	
+
 	}
 
 	public void player1ColorSelect() {
@@ -93,8 +100,8 @@ public class Tron {
 
 		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.text(0.7225, 0.085, "Red");
-		
-		switch(threeOptionMenu()){
+
+		switch (threeOptionMenu()) {
 		case 0:
 			player1ColorSelect();
 			break;
@@ -108,7 +115,7 @@ public class Tron {
 			player1Color = StdDraw.RED;
 			break;
 		}
-		
+
 	}
 
 	public void player2ColorSelect() {
@@ -116,7 +123,7 @@ public class Tron {
 
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.15, "Select Player 2 Color");
-		
+
 		StdDraw.setPenColor(StdDraw.GREEN);
 		StdDraw.text(0.2775, 0.085, "Green");
 
@@ -125,8 +132,8 @@ public class Tron {
 
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.7225, 0.085, "White");
-		
-		switch(threeOptionMenu()){
+
+		switch (threeOptionMenu()) {
 		case 0:
 			player2ColorSelect();
 			break;
@@ -141,18 +148,18 @@ public class Tron {
 			break;
 		}
 	}
-	
-	public void boardSizeSelect(){
+
+	public void boardSizeSelect() {
 		clearInfoDisplay();
-		
+
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.15, "Select Board Size");
 
 		StdDraw.text(0.2775, 0.085, "Small");
 		StdDraw.text(0.5, 0.085, "Medium");
 		StdDraw.text(0.7225, 0.085, "Large");
-		
-		switch(threeOptionMenu()){
+
+		switch (threeOptionMenu()) {
 		case 0:
 			boardSizeSelect();
 			break;
@@ -167,14 +174,43 @@ public class Tron {
 			break;
 		}
 	}
+	
+	public void soundOptions() {
+		clearInfoDisplay();
+
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, 0.15, "Select Sound Options");
+
+		StdDraw.text(0.2775, 0.085, "On");
+		StdDraw.text(0.5, 0.085, "Off");
+		StdDraw.text(0.7225, 0.085, "SFX only");
+
+		switch (threeOptionMenu()) {
+		case 0:
+            soundOptions();
+			break;
+		case 1:
+			effectsOn = true;
+			soundtrackOn = true;
+			break;
+		case 2:
+			effectsOn = false;
+			soundtrackOn = false;
+			break;
+		case 3:
+			effectsOn = true;
+			soundtrackOn = false;
+			break;
+		}
+	}
 
 	public int threeOptionMenu() {
-		while (!StdDraw.isMousePressed()) { //wait for mouse press
+		while (!StdDraw.isMousePressed()) { // wait for mouse press
 		}
-		
-		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+
+		while (StdDraw.isMousePressed()) { // wait for mouse to be released
 		}
-		
+
 		if (StdDraw.mouseY() < 0.18 && StdDraw.mouseY() > 0.02 && StdDraw.mouseX() > 0.055
 				&& StdDraw.mouseX() < 0.945) {
 			if (StdDraw.mouseX() < 0.4255)
@@ -266,34 +302,6 @@ public class Tron {
 		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
 	}
 
-	public void showBoard() {
-		Color[][] display = model.getBoard();
-
-		for (int i = 0; i < display.length; i++) {
-			for (int j = 0; j < display.length; j++) {
-
-				double pieceSize = 0.35 / display.length;
-
-				double xLocation = (j * pieceSize * 2) + 0.15;
-				double yLocation = (i * pieceSize * 2) + 0.21;
-
-				if (display[i][j] != null) {
-					if (display[i][j].equals(Color.YELLOW)) {
-						StdDraw.setPenColor(player1Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);
-					}
-
-					else if (display[i][j].equals(Color.BLUE)) {
-						StdDraw.setPenColor(player2Color);
-						StdDraw.filledRectangle(xLocation, yLocation, pieceSize, pieceSize);
-
-					}
-				}
-			}
-		}
-
-	}
-
 	// dynamically redraws board to be faster
 	public void showBoardFast() {
 
@@ -310,6 +318,14 @@ public class Tron {
 		StdDraw.filledRectangle(player2X, player2Y, pieceSize, pieceSize);
 		StdDraw.show();
 	}
+	
+	public void playDeathSound(){
+		if(effectsOn) StdAudio.play("lose.wav");
+	}
+	
+	public void playSoundtrack(){
+		if(soundtrackOn) StdAudio.loop("background.wav");
+	}
 
 	public void waitForSpace() {
 		while (!StdDraw.isKeyPressed(32)) {
@@ -320,12 +336,15 @@ public class Tron {
 	public void runGame() {
 
 		drawBasic();
+		soundOptions();
 		difficultySelect();
 		boardSizeSelect();
 		player1ColorSelect();
 		player2ColorSelect();
 		drawTutorial();
 		waitForSpace();
+		
+		playSoundtrack();
 
 		while (true) {
 			model = new TronModel(boardSize);
@@ -339,8 +358,8 @@ public class Tron {
 				System.out.println("clock");
 			}
 
-			StdDraw.disableDoubleBuffering(); // have to disable to make some
-												// static changes
+			StdDraw.disableDoubleBuffering(); // have to disable to be able to clear board
+			playDeathSound(); //play death sound
 			handleWinner();
 			waitForSpace();
 
