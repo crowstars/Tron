@@ -1,7 +1,8 @@
 
 /*WISH LIST
- *Color setup GUI (pick yo player color!)
- * 
+ *Stress everything like mad to check for things that were forgotten 
+ * Fix that one bug where there's a gap between head on collisions (hard!)
+ * Make everything look pretty + add comments (save for monday)
  */
 
 import java.awt.Color;
@@ -16,7 +17,7 @@ public class Tron {
 
 	public TronModel model;
 
-	public final int BOARD_SIZE = 40; // size of board
+	public int boardSize = 40; // size of board
 
 	public int player1Points = 0;
 	public int player2Points = 0;
@@ -60,10 +61,6 @@ public class Tron {
 		StdDraw.text(0.2775, 0.085, "Easy");
 		StdDraw.text(0.5, 0.085, "Medium");
 		StdDraw.text(0.7225, 0.085, "Hard");
-
-		// wait for click in three regions
-		while (!StdDraw.isMousePressed()) {
-		}
 		
 		switch(threeOptionMenu()){
 		case 0:
@@ -79,9 +76,7 @@ public class Tron {
 			gameSpeed = 30;
 			break;
 		}
-		
-		while (StdDraw.isMousePressed()) { //wait for mouse to be released
-		}
+	
 	}
 
 	public void player1ColorSelect() {
@@ -99,9 +94,6 @@ public class Tron {
 		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.text(0.7225, 0.085, "Red");
 		
-		while (!StdDraw.isMousePressed()) {
-		}
-		
 		switch(threeOptionMenu()){
 		case 0:
 			player1ColorSelect();
@@ -117,9 +109,6 @@ public class Tron {
 			break;
 		}
 		
-		while (StdDraw.isMousePressed()) { //wait for mouse to be released
-		}
-
 	}
 
 	public void player2ColorSelect() {
@@ -137,12 +126,9 @@ public class Tron {
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.7225, 0.085, "White");
 		
-		while (!StdDraw.isMousePressed()) {
-		}
-		
 		switch(threeOptionMenu()){
 		case 0:
-			player1ColorSelect();
+			player2ColorSelect();
 			break;
 		case 1:
 			player2Color = StdDraw.GREEN;
@@ -154,12 +140,41 @@ public class Tron {
 			player2Color = StdDraw.WHITE;
 			break;
 		}
+	}
+	
+	public void boardSizeSelect(){
+		clearInfoDisplay();
 		
-		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, 0.15, "Select Board Size");
+
+		StdDraw.text(0.2775, 0.085, "Small");
+		StdDraw.text(0.5, 0.085, "Medium");
+		StdDraw.text(0.7225, 0.085, "Large");
+		
+		switch(threeOptionMenu()){
+		case 0:
+			boardSizeSelect();
+			break;
+		case 1:
+			boardSize = 30;
+			break;
+		case 2:
+			boardSize = 50;
+			break;
+		case 3:
+			boardSize = 70;
+			break;
 		}
 	}
 
 	public int threeOptionMenu() {
+		while (!StdDraw.isMousePressed()) { //wait for mouse press
+		}
+		
+		while (StdDraw.isMousePressed()) { //wait for mouse to be released
+		}
+		
 		if (StdDraw.mouseY() < 0.18 && StdDraw.mouseY() > 0.02 && StdDraw.mouseX() > 0.055
 				&& StdDraw.mouseX() < 0.945) {
 			if (StdDraw.mouseX() < 0.4255)
@@ -282,7 +297,7 @@ public class Tron {
 	// dynamically redraws board to be faster
 	public void showBoardFast() {
 
-		double pieceSize = 0.35 / BOARD_SIZE;
+		double pieceSize = 0.35 / boardSize;
 		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;
 		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;
 		double player2X = (model.getPlayer2().getX() * pieceSize * 2) + 0.15;
@@ -303,17 +318,19 @@ public class Tron {
 	}
 
 	public void runGame() {
-		model = new TronModel(BOARD_SIZE);
 
 		drawBasic();
 		difficultySelect();
+		boardSizeSelect();
 		player1ColorSelect();
 		player2ColorSelect();
 		drawTutorial();
 		waitForSpace();
 
 		while (true) {
+			model = new TronModel(boardSize);
 			StdDraw.enableDoubleBuffering();
+			
 			while (!model.isGameOver()) {
 				handleKeyPresses();
 				showBoardFast();
@@ -327,7 +344,6 @@ public class Tron {
 			handleWinner();
 			waitForSpace();
 
-			model = new TronModel(BOARD_SIZE);
 			drawBasic();
 			drawTutorial();
 		}
