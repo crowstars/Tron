@@ -10,21 +10,22 @@ public class TronModelTest {
 
     /*
         Diagram of filledModel when initialized
-        ---------------------------
-       |   |   |   |   |   |   |   |
+           0   1   2   3   4   5   6
+         ---------------------------
+       0 |   |   |   |   |   |   |   |
     *   ----------------------------
-    *  |   |   |   | Y |   |   |   |
-    *  -----------------------------
-    *  |   |   | Y | Y |   |   |   |
-    *  -----------------------------
-    *  |   |   |   |   |   |   |   |
-    *  -----------------------------
-    *  |   |   |   | B | B |   |   |
-    *  -----------------------------
-    *  |   |   |   | B |   |   |   |
-    *  -----------------------------
-    *  |   |   |   |   |   |   |   |
-    *  -----------------------------
+    *  1 |   |   |   | Y |   |   |   |
+    *    -----------------------------
+    *  2 |   |   | Y | Y |   |   |   |
+    *    -----------------------------
+    *  3 |   |   |   |   |   |   |   |
+    *    -----------------------------
+    *  4 |   |   |   | B | B |   |   |
+    *    -----------------------------
+    *  5 |   |   |   | B |   |   |   |
+    *    -----------------------------
+    *  6 |   |   |   |   |   |   |   |
+    *    -----------------------------
     * */
     public final int NORTH = 0;
     public final int EAST = 1;
@@ -72,13 +73,17 @@ public class TronModelTest {
 
     @Test
     public void movePlayersTestBasic() throws Exception{
-        Player p1 = new Player(StdDraw.YELLOW, 2, 1, SOUTH);
-        Player p2 = new Player(StdDraw.BLUE, 2, 4, NORTH);
-        model.movePlayers();
-        assertEquals(2,p1.getX());
-        assertEquals(2,p2.getX());
-        assertEquals(2,p1.getY());
-        assertEquals(3, p2.getY());
+        model = new TronModel(9);
     }
+   
+    @Test
+    // Check if the isEmpty method works fine
+    public void isEmptyTest() throws Exception{
+    	Color[][] expectedBoard = new Color[5][5];
+    	assertEquals(filledModel.isEmpty(0, 0), true);
+    	assertEquals(filledModel.isEmpty(1, 1), true);
+    	assertEquals(filledModel.isEmpty(3, 1), false);
+   		assertEquals(filledModel.isEmpty(3, 5), false);
+    }		
 
 }

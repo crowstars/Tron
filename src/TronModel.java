@@ -126,26 +126,21 @@ public class TronModel {
 		if(destination1.getX() == destination2.getX() && destination1.getY() == destination2.getY()){
 			gameOver = true;
 			winner = null;
-			System.out.println("draw game!");
 		}
 		else if (destination1.getY() >= board.length || destination1.getX() >= board.length
 				|| destination1.getY() <= 0 || destination1.getX() <= 0) {
 			gameOver = true;
 			winner = player2.getColor();
-			System.out.println("Player 1 ran into wall at " + destination1);
 		} else if (destination2.getY() >= board.length || destination2.getX() >= board.length
 				|| destination2.getY() <= 0 || destination2.getX() <= 0) {
 			gameOver = true;
 			winner = player1.getColor();
-			System.out.println("Player 2 ran into wall at " + destination2);
 		} else if (board[destination1.getY()][destination1.getX()] != null) {
 			gameOver = true;
 			winner = player2.getColor();
-			System.out.println("Player 1 ran into light trail at " + destination1);
 		} else if (board[destination2.getY()][destination2.getX()] != null) {
 			gameOver = true;
 			winner = player1.getColor();
-			System.out.println("Player 2 ran into light trail at " + destination2);
 		}
 		// Continues the game if game is not over
 		if (!gameOver) {
@@ -154,9 +149,6 @@ public class TronModel {
 
 			player2.setX(destination2.getY());
 			player2.setY(destination2.getX());
-
-			System.out.println("Player 1 at (" + destination1 + ")");
-			System.out.println("Player 2 at (" + destination2 + ")");
 
 			updateBoard();
 		}
