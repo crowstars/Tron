@@ -305,20 +305,23 @@ public class Tron {
 		StdDraw.setPenColor(StdDraw.BLACK);
 
 		if (model.getWinner() == null) {
-			StdDraw.text(0.5, 0.12, "Nobody Wins!");
+			StdDraw.text(0.5, 0.15, "Nobody Wins!");
 		}
 
 		else if (model.getWinner().equals(StdDraw.YELLOW)) {
-			StdDraw.text(0.5, 0.12, "Player 1 Wins!");
+			StdDraw.text(0.5, 0.15, "Player 1 Wins!");
 			player1Points++;
 		}
 
 		else {
-			StdDraw.text(0.5, 0.12, "Player 2 Wins!");
+			StdDraw.text(0.5, 0.15, "Player 2 Wins!");
 			player2Points++;
 		}
+		
+		StdDraw.text(0.25, 0.1, "Points: " + player1Points);
+		StdDraw.text(0.75, 0.1, "Points: " + player2Points);
 
-		StdDraw.text(0.5, 0.08, "Press SPACE to play again");
+		StdDraw.text(0.5, 0.05, "Press SPACE to play again");
 	}
 
 	/** Dynamically redraws board to be faster */
