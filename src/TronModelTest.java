@@ -75,5 +75,15 @@ public class TronModelTest {
     public void movePlayersTestBasic() throws Exception{
         model = new TronModel(9);
     }
+   
+    @Test
+    // Check if the isEmpty method works fine
+    public void isEmptyTest() throws Exception{
+    	Color[][] expectedBoard = new Color[5][5];
+    	assertEquals(filledModel.isEmpty(0, 0), true);
+    	assertEquals(filledModel.isEmpty(1, 1), true);
+    	assertEquals(filledModel.isEmpty(3, 1), false);
+   		assertEquals(filledModel.isEmpty(3, 5), false);
+    }		
 
 }
