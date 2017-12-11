@@ -2,8 +2,8 @@
 /* WISH LIST
  Add collision sounds, soundtrack + ability to turn these on/off
  Stress everything like mad to check for things that were forgotten 
-  Fix that one bug where there's a gap between head on collisions (hard!)
-Make everything look pretty + add comments (save for monday)
+ Fix that one bug where there's a gap between head on collisions (hard!)
+ Make everything look pretty + add comments (save for monday)
  Remove print statements (all of them!)
  */
 
@@ -379,12 +379,12 @@ public class Tron {
 				handleKeyPresses();
 				showBoardFast();
 				model.movePlayers();
-				StdDraw.pause(gameSpeed); 
+				StdDraw.pause(gameSpeed);
 				System.out.println("clock");
 			}
 
 			StdDraw.disableDoubleBuffering(); // Have to disable to be able to clear board
-			playDeathSound(); 
+			playDeathSound();
 			handleWinner();
 			waitForSpace();
 
