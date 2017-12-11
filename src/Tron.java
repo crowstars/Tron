@@ -1,14 +1,11 @@
 
-/*WISH LIST
- * Add collision sounds, soundtrack + ability to turn these on/off
- *Stress everything like mad to check for things that were forgotten 
- * Fix that one bug where there's a gap between head on collisions (hard!)
- * Make everything look pretty + add comments (save for monday)
- * Remove print statements (all of them!)
+/* WISH LIST
+ Add collision sounds, soundtrack + ability to turn these on/off
+ Stress everything like mad to check for things that were forgotten 
+  Fix that one bug where there's a gap between head on collisions (hard!)
+Make everything look pretty + add comments (save for monday)
+ Remove print statements (all of them!)
  */
-
-//Player Lose Sound Clip from LittleRobotSoundFactory on freesound.org, "8 bit Sound Effects Library"
-//Background Sound from from HiccupVirus on freesound.org, "Mono tron bike engine.wav"
 
 import java.awt.Color;
 
@@ -356,7 +353,7 @@ public class Tron {
 	/** Waits for space to be pressed */
 	public void waitForSpace() {
 		while (!StdDraw.isKeyPressed(32)) {
-			// wait for space to be pressed
+			// Wait for space to be pressed
 		}
 	}
 
@@ -382,12 +379,12 @@ public class Tron {
 				handleKeyPresses();
 				showBoardFast();
 				model.movePlayers();
-				StdDraw.pause(gameSpeed); // slow game clock for testing!
+				StdDraw.pause(gameSpeed); 
 				System.out.println("clock");
 			}
 
-			StdDraw.disableDoubleBuffering(); // have to disable to be able to clear board
-			playDeathSound(); // play death sound
+			StdDraw.disableDoubleBuffering(); // Have to disable to be able to clear board
+			playDeathSound(); 
 			handleWinner();
 			waitForSpace();
 
