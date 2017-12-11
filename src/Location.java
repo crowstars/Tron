@@ -12,21 +12,22 @@ public class Location {
         this.x = x;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Location other = (Location) obj;
-        if (x != other.x)
-            return false;
-        if (y != other.y)
-            return false;
-        return true;
-    }
+	/** Sees if object variable is true */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Location other = (Location) obj;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
 
     /**
      * Returns the x of this location.
@@ -54,6 +55,7 @@ public class Location {
         return y;
     }
 
+    /** Returns player location */
     public String toString(){
         return "" + y + ", " + x;
     }
