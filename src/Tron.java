@@ -270,8 +270,8 @@ public class Tron {
 	/** Handles key presses */
 	public void handleKeyPresses() {
 		// Copied from the Learn Java in N Games program AsteroidRally
-		
-		//Scan inputs for player 1
+
+		// Scan inputs for player 1
 		if (StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_A)) {
 			model.setPlayer1Direction(WEST);
 		}
@@ -346,13 +346,13 @@ public class Tron {
 		if (effectsOn)
 			StdAudio.play("lose.wav");
 	}
-	
+
 	/** Plays soundtrack */
 	public void playSoundtrack() {
 		if (soundtrackOn)
 			StdAudio.loop("background.wav");
 	}
-	
+
 	/** Waits for space to be pressed */
 	public void waitForSpace() {
 		while (!StdDraw.isKeyPressed(32)) {
