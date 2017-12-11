@@ -160,7 +160,9 @@ public class TronModel {
 	//Accessors for tests
 	//Accessors and Modifiers for tests
 	public void setColor(int x, int y, Color color){
-		board[y][x] = color;
+		if(x<board.length && y<board.length) {
+			board[y][x] = color;
+		}
 	}
 
 }

@@ -70,8 +70,15 @@ public class TronModelTest {
         assertEquals(expectedP2.getDirection(), model.getPlayer2().getDirection());
     }
 
-    public void movePlayersTest() throws Exception{
-
+    @Test
+    public void movePlayersTestBasic() throws Exception{
+        Player p1 = new Player(StdDraw.YELLOW, 2, 1, SOUTH);
+        Player p2 = new Player(StdDraw.BLUE, 2, 4, NORTH);
+        model.movePlayers();
+        assertEquals(2,p1.getX());
+        assertEquals(2,p2.getX());
+        assertEquals(2,p1.getY());
+        assertEquals(3, p2.getY());
     }
 
 }
