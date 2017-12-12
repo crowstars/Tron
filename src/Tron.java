@@ -1,10 +1,12 @@
-
-/* WISH LIST
- Add collision sounds, soundtrack + ability to turn these on/off
- Stress everything like mad to check for things that were forgotten 
- Fix that one bug where there's a gap between head on collisions (hard!)
- Make everything look pretty + add comments (save for monday)
- Remove print statements (all of them!)
+/* 
+ * TRON: A clone of the classic arcade game by the same name
+ * By Kenny Tran, Quinn Vinlove, Sarah Wood, and Xiya Yu
+ * 
+ * Background sound from "8-Bit Sound Effects Library" by LittleRobotSoundFactory on freesound.org (CC BY 3.0)
+ * 	https://freesound.org/people/LittleRobotSoundFactory/packs/16681/
+ * 
+ * Player collision sound from "Mono tron bike engine.wav" by HiccupVirus on freesound.org (CC BY 3.0)
+ * 	https://freesound.org/people/Hiccupvirus/sounds/33479/
  */
 
 import java.awt.Color;
