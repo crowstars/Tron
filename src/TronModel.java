@@ -26,6 +26,7 @@ public class TronModel {
 	public TronModel(int width) {
 		board = new Color[width][width];
 		
+		//places players in starting position in first and third 1/4's of board
 		int midpoint = width / 2;
 		int player1Start = midpoint - (midpoint / 2);
 		int player2Start = midpoint + (midpoint / 2);
@@ -60,7 +61,7 @@ public class TronModel {
 		return gameOver;
 	}
 
-	/** Color of winner */
+	/** Returns color of winner */
 	public Color getWinner() {
 		return winner;
 	}
@@ -77,6 +78,10 @@ public class TronModel {
 	
 	/** Sets player 1 directions and prevents player suicide */
 	public void setPlayer1Direction(int direction) {
+		/*Another beautiful implementation: To prevent a player from going in the exact opposite direction 
+		 * that they are moving in, I figured out that the current direction minus 2 corresponds to the
+		 * opposite direction.
+		 */
 		if(Math.abs(direction - player1.getDirection()) != 2){
 			player1.setDirection(direction);
 		}
@@ -123,23 +128,23 @@ public class TronModel {
 		}
 
 		// Tests for collisions
-		if(destination1.getX() == destination2.getX() && destination1.getY() == destination2.getY()){
-			gameOver = true;
+		if(destination1.getX() == destination2.getX() && destination1.getY() == destination2.getY()){ 
+			gameOver = true; //players collide head-on
 			winner = null;
 		}
 		else if (destination1.getY() >= board.length || destination1.getX() >= board.length
 				|| destination1.getY() <= 0 || destination1.getX() <= 0) {
-			gameOver = true;
+			gameOver = true; //Player 1 runs off the board
 			winner = player2.getColor();
 		} else if (destination2.getY() >= board.length || destination2.getX() >= board.length
 				|| destination2.getY() <= 0 || destination2.getX() <= 0) {
-			gameOver = true;
+			gameOver = true; //player 2 runs off the board
 			winner = player1.getColor();
 		} else if (board[destination1.getY()][destination1.getX()] != null) {
-			gameOver = true;
+			gameOver = true; //player 1 runs into a light trail
 			winner = player2.getColor();
 		} else if (board[destination2.getY()][destination2.getX()] != null) {
-			gameOver = true;
+			gameOver = true; //player 2 runs into a light trail
 			winner = player1.getColor();
 		}
 		// Continues the game if game is not over

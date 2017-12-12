@@ -42,7 +42,7 @@ public class Tron {
 
 	/** Main Method */
 	public static void main(String args[]) {
-		new Tron().runGame();
+		new Tron().runGame(); //breaks main program out of void methods
 	}
 
 	/** Draws game board */
@@ -99,6 +99,7 @@ public class Tron {
 	public void player1ColorSelect() {
 		clearInfoDisplay();
 
+		//Fancy colored text acts as preview for selection 
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.15, "Select Player 1 Color");
 
@@ -132,6 +133,7 @@ public class Tron {
 	public void player2ColorSelect() {
 		clearInfoDisplay();
 
+		//Fancy colored text acts as preview for selection
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.5, 0.15, "Select Player 2 Color");
 
@@ -217,7 +219,7 @@ public class Tron {
 		}
 	}
 
-	/** Allows players to click on three options that appear in game */
+	/** Allows players to click on three options that appear in game in the bottom display */
 	public int threeOptionMenu() {
 		while (!StdDraw.isMousePressed()) { // Wait for mouse press
 		}
@@ -225,6 +227,8 @@ public class Tron {
 		while (StdDraw.isMousePressed()) { // Wait for mouse to be released
 		}
 
+		//returns the third of the display that the click was in
+		//display is broken up like [1, 2, 3] 
 		if (StdDraw.mouseY() < 0.18 && StdDraw.mouseY() > 0.02 && StdDraw.mouseX() > 0.055
 				&& StdDraw.mouseX() < 0.945) {
 			if (StdDraw.mouseX() < 0.4255)
@@ -236,6 +240,8 @@ public class Tron {
 			else
 				return 3;
 		}
+		
+		//returns 0 if click is outside of defined space
 		return 0;
 	}
 
@@ -243,8 +249,8 @@ public class Tron {
 	public void drawTutorial() {
 		clearInfoDisplay();
 
-		StdDraw.setPenColor(StdDraw.BLACK);
 		// draw tutorial text
+		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.25, 0.15, "Player 1");
 		StdDraw.text(0.25, 0.1, "Steer with WASD");
 
@@ -253,6 +259,7 @@ public class Tron {
 
 		StdDraw.text(0.5, 0.05, "SPACE to start");
 
+		//draw points that each player has
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(0.25, 0.05, "Points: " + player1Points);
 		StdDraw.text(0.75, 0.05, "Points: " + player2Points);
@@ -260,6 +267,7 @@ public class Tron {
 
 	/** Clears info display when game starts */
 	public void clearInfoDisplay() {
+		//covers bottom display with new, identical box
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.filledRectangle(0.5, 0.10, 0.445, 0.085);
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
@@ -326,9 +334,16 @@ public class Tron {
 		StdDraw.text(0.5, 0.05, "Press SPACE to play again");
 	}
 
-	/** Dynamically redraws board to be faster */
+	/** Draws player light trails */
 	public void showBoardFast() {
-
+        
+		/*
+		 * Made it so light trails are added onto display without having to scan through entire array of every single 
+		 * light trail on the board, whcih is much slower, especially with larger game fields. 
+		 * Because trails only appear directly behind a player and nowhere else, we can 
+		 * safely assume this. This is one "beautiful implementation"
+		 */
+		
 		double pieceSize = 0.35 / boardSize;
 		double player1X = (model.getPlayer1().getX() * pieceSize * 2) + 0.15;
 		double player1Y = (model.getPlayer1().getY() * pieceSize * 2) + 0.21;
@@ -345,13 +360,13 @@ public class Tron {
 
 	/** Plays death sound */
 	public void playDeathSound() {
-		if (effectsOn)
+		if (effectsOn) //checks to see if sound effects are set to 'on'
 			StdAudio.play("lose.wav");
 	}
 
 	/** Plays soundtrack */
 	public void playSoundtrack() {
-		if (soundtrackOn)
+		if (soundtrackOn) //checks to see if soundtrack is set to 'on'
 			StdAudio.loop("background.wav");
 	}
 
@@ -366,34 +381,38 @@ public class Tron {
 	public void runGame() {
 
 		drawBasic();
+		
+		//shows all of the game configuration options in a row before the game starts
 		soundOptions();
 		difficultySelect();
 		boardSizeSelect();
 		player1ColorSelect();
 		player2ColorSelect();
+		
+		//draws tutorial text and waits for game to be started
 		drawTutorial();
 		waitForSpace();
-
 		playSoundtrack();
-
+		
+		//runs infinite loop after initial setup until game is stopped 
 		while (true) {
 			model = new TronModel(boardSize);
 			StdDraw.enableDoubleBuffering();
 
+			//runs through the game clock until the isGameOver() method from the model returns true
 			while (!model.isGameOver()) {
-				handleKeyPresses();
-				showBoardFast();
-				model.movePlayers();
-				StdDraw.pause(gameSpeed);
-				System.out.println("clock");
+				handleKeyPresses(); //scans for key presses
+				showBoardFast(); //shows the board
+				model.movePlayers(); //moves players
+				StdDraw.pause(gameSpeed); //adjustable delay for game clock
 			}
 
-			StdDraw.disableDoubleBuffering(); // Have to disable to be able to clear board
+			StdDraw.disableDoubleBuffering(); // Have to disable to be able to write over things
 			playDeathSound();
-			handleWinner();
+			handleWinner(); //show winner, then wait
 			waitForSpace();
 
-			drawBasic();
+			drawBasic(); //draw everything over again for a fresh start 
 			drawTutorial();
 		}
 	}
